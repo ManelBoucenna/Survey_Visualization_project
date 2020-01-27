@@ -1,4 +1,4 @@
-// Angular libs
+//  Angular libs
 import { Component, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 // Services
