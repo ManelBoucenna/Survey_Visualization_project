@@ -1,0 +1,9 @@
+<div id="metadata-container">
+    <h2>Meta Data</h2>
+    <div id="metadata-viz-container">
+      <div *ngFor="let question of metadata" class="viz-container" id="{{'metadata_' + question.variable}}">
+        <p class="var_name">{{question.variable}}</p>
+        <div width="max-content" id='{{"metaview_"+question.variable}}' class="figure"></div>
+      </div>
+    </div>
+</div>

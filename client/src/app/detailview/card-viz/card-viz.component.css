@@ -1,0 +1,12 @@
+.node {
+    position: absolute;
+    padding: 4px;
+    /* box-shadow: 0 10px 40px 0 #B0C1D9; */
+    text-align: center;
+}
+
+.var_name {
+    margin: 0;
+    font-size: 10px;
+    text-transform: lowercase;
+}

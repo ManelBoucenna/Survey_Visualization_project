@@ -1,0 +1,30 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "sidenav main";
+    height: 100vh;
+}
+
+.sidenav {
+    grid-area: sidenav;
+    height: 100vh;
+    background-color: #3a74b73b;
+}
+
+.main {
+    grid-area: main;
+    background-color: whitesmoke;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+app-detailview{
+    display: flex;
+    flex-direction: column;
+}
+

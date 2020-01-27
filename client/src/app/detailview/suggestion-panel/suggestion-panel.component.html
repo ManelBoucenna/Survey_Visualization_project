@@ -1,0 +1,31 @@
+    <form class="form-inline">
+      <p>I want to visualize the </p>
+      <mat-form-field>
+        <mat-label>Task</mat-label>
+        <mat-select [(ngModel)]="selectedTask" name="tasks">
+          <mat-option *ngFor="let task of tasks| keyvalue" [value]="task">
+            {{task.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p> of </p>
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList aria-label="Question selection">
+          <mat-chip *ngFor="let question of selectedQuestions" [selectable]="selectable" [removable]="removable"
+            (removed)="remove(question)">
+            {{question}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="New Question..." #questionInput [formControl]="IdCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let question of filteredQuestions | async" [value]="question">
+            {{question}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit"
+        (click)="AddNode(selectedQuestions, selectedTask)">Apply</button>
+    </form>

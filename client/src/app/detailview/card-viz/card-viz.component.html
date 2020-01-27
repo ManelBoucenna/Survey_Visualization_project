@@ -1,0 +1,14 @@
+<mat-card *ngIf="created" class="node" cdkDragBoundary="main" cdkDrag>
+  <mat-card-header>
+    <mat-card-title>Visualization:{{visualization}}</mat-card-title>
+    <mat-card-subtitle>Task:{{task}}</mat-card-subtitle>
+    <button mat-icon-button (click)="OpenZoom()"><mat-icon >zoom_in</mat-icon></button>
+  </mat-card-header>
+  <div class="container">
+    <div class="box-viz">
+      <p class="var_name">{{variable}}</p>
+      <div width="max-content" id={{id}} class="figure"></div>
+    </div>
+  </div>
+  <button mat-button color="warn" (click)="DestroyComponent()">Delete</button>
+</mat-card>
