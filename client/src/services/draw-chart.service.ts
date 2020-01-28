@@ -2,8 +2,10 @@
 import { Injectable } from '@angular/core';
 
 // Data files
-import { CreationEntry, Question} from './../helpers/types';
+import { CreationEntry, Question } from './../helpers/types';
 import { Visualization } from '../helpers/enums';
+import { allData } from 'src/assets/data/allData';
+
 // Services
 import { DataManagementService } from './data-management.service';
 import { VisualizationDrawerFactory } from './visualization_creation/VisualizationCreatorFactory';
@@ -66,8 +68,9 @@ export class DrawChartService {
     const questionEntries: Question[] = [];
     const Overview = false;
     const ndx = this.ndx;
+    const DataPlusMeta: any = allData;
     questions.forEach(element => {
-      questionEntries.push(this.questionnaire.filter(q => q.variable === element)[0]);
+      questionEntries.push(DataPlusMeta.filter(q => q.variable === element)[0]);
     });
     const creationEntries: CreationEntry = new CreationEntry(id, questionEntries, Overview, ndx);
 

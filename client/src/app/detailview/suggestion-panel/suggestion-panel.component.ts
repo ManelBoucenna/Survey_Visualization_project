@@ -11,6 +11,7 @@ import { Guid } from 'guid-typescript';
 // Data files
 import { Task, ValidationStatus } from 'src/helpers/enums';
 import { CreationEntry, CardEntry } from 'src/helpers/types';
+
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
 import { SuggestChartService } from 'src/services/suggest-chart.service';
@@ -34,6 +35,8 @@ export class SuggestionPanelComponent implements OnInit {
 
   // Variables to create the form
   questionnaire: any = [];
+  metadata: any = [];
+  questions: any = [];
   tasks: any = Task;
   myControl = new FormControl();
   IdCtrl = new FormControl();
@@ -57,10 +60,11 @@ export class SuggestionPanelComponent implements OnInit {
 
   ngOnInit() {
     this.questionnaire = this.drawChartService.questionnaire;
-    this.IdQuestions = this.questionnaire.map(item => item.variable);
+    this.metadata = this.drawChartService.metadata;
+    this.questions = this.questions.concat(this.questionnaire, this.metadata);
+    this.IdQuestions = this.questions.map(item => item.variable);
     // Check difference between IdQuestions and filteredQuestions
     this.filteredQuestions = this.filterQuestions(this.IdQuestions);
-    // this.shareDataService.currentdata.subscribe(data => this.CreatedVizs = data);
   }
 
 

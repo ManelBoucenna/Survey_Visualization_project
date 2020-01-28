@@ -1,8 +1,9 @@
-import { Task } from 'src/helpers/enums';
 import { ValidationResult } from './../../helpers/types';
-import { ValidationStatus } from './../../helpers/enums';
+import { ValidationStatus, Task } from './../../helpers/enums';
 import { IValidator } from './../../interfaces/IValidator';
-import { questionnaire } from 'src/assets/data/questionnaire';
+
+// Data
+import { allData } from './../../assets/data/allData';
 
 export class VisualisationSuggestionValidator implements IValidator {
 
@@ -18,7 +19,7 @@ export class VisualisationSuggestionValidator implements IValidator {
 
     private ValidateQuestions(): ValidationResult[] { //Validate entered data
         const validationResults = [];
-        const Questionnaire = questionnaire;
+        const Questionnaire: any = allData;
         this.questions.forEach(question => {
             if (Questionnaire.some(item => item.variable === question)) {
                 validationResults.push(new ValidationResult(ValidationStatus.Passed));

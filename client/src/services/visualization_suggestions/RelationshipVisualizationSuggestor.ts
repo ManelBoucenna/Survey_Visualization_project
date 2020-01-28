@@ -1,7 +1,7 @@
-import { Task, Visualization, Category } from '../../helpers/enums';
+import { Visualization, Category } from '../../helpers/enums';
 import { VisualizationSuggestor } from './VisualizationSuggestor';
 import { SuggestionEntry } from '../../helpers/types';
-import { questionnaire } from '../../assets/data/questionnaire';
+import { allData } from './../../assets/data/allData';
 
 // The workflow is as follow:
 // 1- Check that the user has chosen more than one question: dataValidation()
@@ -12,7 +12,6 @@ import { questionnaire } from '../../assets/data/questionnaire';
 
 export class RelationshipVisualizationSuggestor extends VisualizationSuggestor {
     public Suggest(): Visualization {
-        // if (this.dataValidation(this.Entry)) {
             const dataType = this.homogeneousData(this.Entry);
             // Binary Relationship
             if (this.binaryRelationship(this.Entry)) {
@@ -20,16 +19,7 @@ export class RelationshipVisualizationSuggestor extends VisualizationSuggestor {
             } else {
                 return this.MultipleSuggestion(dataType);
             }
-        // }
     }
-    // public dataValidation(suggestionEntry: SuggestionEntry): boolean {
-    //     if (suggestionEntry.Questions.length > 1) {
-    //         return true;
-    //     } else {
-    //         alert('Select at least two questions');
-    //         return false;
-    //     }
-    // }
 
     public binaryRelationship(suggestionEntry: SuggestionEntry): boolean {
         if (this.Entry.Questions.length === 2) {
@@ -45,6 +35,8 @@ export class RelationshipVisualizationSuggestor extends VisualizationSuggestor {
         let categoryOld = null;
         let categoryNew = null;
         let type = null;
+        const questionnaire: any = allData;
+
         for (const element of questions) {
             if (categoryOld === null) {
                 categoryOld = questionnaire.filter(q => q.variable === element).pop().category;

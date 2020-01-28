@@ -1,7 +1,6 @@
 import { Visualization, Category } from '../../helpers/enums';
 import { VisualizationSuggestor } from './VisualizationSuggestor';
-import { SuggestionEntry } from '../../helpers/types';
-import { questionnaire } from '../../assets/data/questionnaire';
+import { allData } from './../../assets/data/allData';
 
 // The workflow is as follow:
 // 1- Check that the user has chosen only one questions: dataValidation()
@@ -10,8 +9,8 @@ import { questionnaire } from '../../assets/data/questionnaire';
 
 export class TimeVisualizationSuggestor extends VisualizationSuggestor {
     public Suggest(): Visualization {
-        // if (this.dataValidation(this.Entry)) {
         const selectedQuestion = this.Entry.Questions[0];
+        const questionnaire: any = allData;
         const category = questionnaire.filter(q => q.variable === selectedQuestion).pop().category;
         switch (category) {
             case Category.MultipleChoices: {
@@ -28,19 +27,6 @@ export class TimeVisualizationSuggestor extends VisualizationSuggestor {
                 break;
             }
         }
-        // } else {
-        //     return null;
-        // }
     }
-    // public dataValidation(suggestionEntry: SuggestionEntry): boolean {
-    //     if (suggestionEntry.Questions.length === 1) {
-    //         return true;
-    //     } else if (suggestionEntry.Questions.length === 0) {
-    //         alert('Select at least one question');
-    //         return false;
-    //     } else {
-    //         alert('Select only one question at the time to visualize.');
-    //         return false;
-    //     }
-    // }
+
 }
