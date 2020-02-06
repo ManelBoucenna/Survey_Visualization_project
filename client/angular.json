@@ -28,7 +28,9 @@
               "src/styles.css",
               "./node_modules/dc/dist/style/dc.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plotly-latest.min.js"
+            ]
           },
           "configurations": {
             "production": {

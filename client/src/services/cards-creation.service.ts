@@ -28,6 +28,7 @@ export class CardsCreationService {
         (component.instance as any).variable = cardEntry.CreationEntries.Questions[0].variable;
         (component.instance as any).created = true;
         (component.instance as any).creationEntries = cardEntry.CreationEntries;
+        //(component.instance as any).parentId = TODO
 
 
         this.rootViewContainer.insert(component.hostView);

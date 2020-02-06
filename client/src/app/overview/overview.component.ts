@@ -24,7 +24,7 @@ export class OverviewComponent implements OnInit {
   IdCtrl = new FormControl();
   filteredQuestions: Observable<Question[]>;
 
-  constructor(private drawChartService: DrawChartService) {
+  constructor(public drawChartService: DrawChartService) {
     this.questionnaire = this.drawChartService.questionnaire;
     this.filteredQuestions = this.IdCtrl.valueChanges
       .pipe(

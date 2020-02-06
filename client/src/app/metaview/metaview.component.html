@@ -1,5 +1,14 @@
-<div id="metadata-container">
-    <h2>Meta Data</h2>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        META DATA
+      </mat-panel-title>
+      <mat-panel-description>
+        Show Meta Data
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <div id="metadata-container">
     <div id="metadata-viz-container">
       <div *ngFor="let question of metadata" class="viz-container" id="{{'metadata_' + question.variable}}">
         <p class="var_name">{{question.variable}}</p>
@@ -7,3 +16,5 @@
       </div>
     </div>
 </div>
+
+</mat-expansion-panel>

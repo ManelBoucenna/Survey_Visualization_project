@@ -49,7 +49,7 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
                 return 4;
             })
             // .x(d3.scaleBand())
-            .x(d3.scaleBand().domain([-1, 6]))
+            .x(d3.scaleBand())//.domain([-1, 6]))
             .y(d3.scaleLinear().domain([-1, 5]))
             .xUnits(dc.units.ordinal)
             .elasticY(true)
