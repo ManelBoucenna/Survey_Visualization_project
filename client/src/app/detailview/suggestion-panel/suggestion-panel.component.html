@@ -18,7 +18,8 @@
           </mat-chip>
           <input placeholder="New Question..." #questionInput [formControl]="IdCtrl" [matAutocomplete]="auto"
             [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+            (keyup.enter)="AddNode(selectedQuestions, selectedTask)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let question of filteredQuestions | async" [value]="question">

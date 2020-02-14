@@ -19,7 +19,7 @@ export class DrawChartService {
   questionnaire: any;
   metadata: any;
   data: any;
-  ndx: any;
+  public ndxOverviewMetadata: any;
 
   constructor(
     public dataManagement: DataManagementService) {
@@ -67,7 +67,7 @@ export class DrawChartService {
   public GetCreationEntries(id: string, questions: string[]): CreationEntry {
     const questionEntries: Question[] = [];
     const Overview = false;
-    const ndx = this.ndx;
+    const ndx = this.dataManagement.getNdx(this.data);
     const DataPlusMeta: any = allData;
     questions.forEach(element => {
       questionEntries.push(DataPlusMeta.filter(q => q.variable === element)[0]);

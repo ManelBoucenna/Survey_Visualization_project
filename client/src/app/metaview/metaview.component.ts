@@ -23,10 +23,10 @@ export class MetaviewComponent implements OnInit {
   ngOnInit() {
     this.drawChartService.dataManagement.getData().then(data => {
       this.drawChartService.data = data;
-      this.drawChartService.ndx = this.drawChartService.dataManagement.getNdx(data);
+      // this.drawChartService.ndxOverviewMetadata = this.drawChartService.ndxOverviewMetadata;
       this.drawChartService.metadata.forEach(question => {
         const id = 'metaview_' + question.variable;
-        const creationEntry = new CreationEntry(id, [question], true, this.drawChartService.ndx);
+        const creationEntry = new CreationEntry(id, [question], true, this.drawChartService.ndxOverviewMetadata);
         this.drawChartService.DrawVisualizationOverview(creationEntry);
       });
     });

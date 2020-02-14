@@ -16,7 +16,7 @@
 .main {
     grid-area: main;
     background-color: whitesmoke;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -24,7 +24,8 @@
 }
 
 app-detailview{
-    display: flex;
-    flex-direction: column;
+    /* background-color: grey; */
+    flex-grow : 1;
+    height: 100%;
 }
 

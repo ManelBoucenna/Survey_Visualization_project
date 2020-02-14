@@ -32,15 +32,15 @@ export class OverviewComponent implements OnInit {
         map(question => question ? this._filterQuestions(question) : this.drawChartService.questionnaire.slice())
       );
   }
-
+ 
   ngOnInit() {
     this.drawChartService.dataManagement.getData().then(data => {
       this.drawChartService.data = data;
-      this.drawChartService.ndx = this.drawChartService.dataManagement.getNdx(data);
+      this.drawChartService.ndxOverviewMetadata = this.drawChartService.dataManagement.getNdx(data);
       this.drawChartService.questionnaire.forEach(question => {
         const id = 'overview_' + question.variable;
         const questions: Question[] = [question];
-        const creationEntry = new CreationEntry(id, questions, true, this.drawChartService.ndx);
+        const creationEntry = new CreationEntry(id, questions, true, this.drawChartService.ndxOverviewMetadata);
         this.drawChartService.DrawVisualizationOverview(creationEntry);
       });
     });

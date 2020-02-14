@@ -17,10 +17,12 @@ export class TimeVisualizationSuggestor extends VisualizationSuggestor {
                 return Visualization.StackedChart;
             }
             case Category.RatingScale: {
-                return Visualization.BoxChart;
+                return Visualization.ViolinBoxChart;
+                //return Visualization.BoxChart;
             }
             case Category.Numerical: {
-                return Visualization.BoxChart;
+                return Visualization.ViolinBoxChart;
+                // return Visualization.BoxChart;
             }
             default: {
                 alert('There is an error in question category: ' + category);
