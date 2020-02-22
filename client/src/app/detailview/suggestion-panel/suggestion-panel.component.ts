@@ -10,7 +10,7 @@ import { Guid } from 'guid-typescript';
 
 // Data files
 import { Task, ValidationStatus } from 'src/helpers/enums';
-import { CreationEntry, CardEntry } from 'src/helpers/types';
+import { CreationEntry, CardEntry, Id } from 'src/helpers/types';
 
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
@@ -121,7 +121,7 @@ export class SuggestionPanelComponent implements OnInit {
 
     const validationResults = new VisualisationSuggestionValidator(questions, task['key']).Validate();
     if (validationResults.every(result => result.Result === ValidationStatus.Passed)) {
-      const id = 'a' + Guid.raw();
+      const id = Id.New('CardEntry');
       const suggestedVisuallization = this.suggestChartService.SuggestVisualization(questions, task);
       const creationEntries: CreationEntry = this.drawChartService.GetCreationEntries(id, questions);
 
@@ -132,8 +132,20 @@ export class SuggestionPanelComponent implements OnInit {
         Task: task['key']
       };
       // Create node then add visualization
-      this.cardCreationService.addDynamicCard(cardEntry).then(() => {
-        console.log('Node created');
+      this.cardCreationService.createCard(cardEntry).then(() => {
+        const observer = new MutationObserver((mutations, me) => {
+          const canvas = document.getElementById(cardEntry.Id.Value);
+          if (canvas) {
+            this.drawChartService.DrawVisualizationDetail(cardEntry.Visualization, cardEntry.CreationEntries);
+            me.disconnect(); // stop observing
+            return;
+          }
+        });
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true
+        });
       }
       );
     } else {

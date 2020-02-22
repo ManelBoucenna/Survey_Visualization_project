@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-//Services
+import { Component, OnInit, ViewChild, ViewContainerRef, HostListener } from '@angular/core';
+import { CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
+// Services
 import { CardsCreationService } from 'src/services/cards-creation.service';
+import { CardEntry } from 'src/helpers/types';
 
 @Component({
   selector: 'app-dragndrop-panel',
@@ -10,13 +13,23 @@ import { CardsCreationService } from 'src/services/cards-creation.service';
 
 export class DragndropPanelComponent implements OnInit {
 
-  // data: CardEntry[] = null;
   @ViewChild('cardContainer', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
-  constructor(private cardCreationService: CardsCreationService) { }
+  constructor(public cardsCreationService: CardsCreationService) { }
 
-  ngOnInit() {
-    this.cardCreationService.setRootViewContainerRef(this.viewContainerRef);
+  ngOnInit() { }
+
+  DeleteCard(id) {
+    return this.cardsCreationService.removeCard(id);
   }
 
+  drop(event: CdkDragDrop<CardEntry[]>) {
+    this.cardsCreationService.moveCard(event);
+  }
+
+  drag(event: CdkDragStart<any>) {
+    this.cardsCreationService.createGroup();
+  }
 }
+
+

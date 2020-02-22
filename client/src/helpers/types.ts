@@ -1,5 +1,9 @@
 import { Task, Visualization, ValidationStatus } from './enums';
 import { withLatestFrom } from 'rxjs/operators';
+import { Guid } from 'guid-typescript';
+import { getMatIconNameNotFoundError } from '@angular/material';
+
+const nameof = <T>(name: keyof T) => name;
 
 export class Question {
     id: number;
@@ -11,7 +15,7 @@ export class Question {
 }
 
 export class CreationEntry {
-    public id: string;
+    public id: Id;
     public Questions: Question[];
     public ndx: any;
     public Overview: boolean;
@@ -19,7 +23,7 @@ export class CreationEntry {
     public height: number;
     public margins: any;
     constructor(
-        id: string,
+        id: Id,
         questions: Question[],
         overview: boolean = true,
         ndx: any,
@@ -42,7 +46,7 @@ export class CreationEntry {
 }
 
 export class CardEntry {
-    public Id: string;
+    public Id: Id;
     public CreationEntries: CreationEntry;
     public Visualization: Visualization;
     public Task: Task;
@@ -70,3 +74,20 @@ export class ValidationResult {
         this.Message = message;
     }
 }
+
+export class Id {
+    public Value: string;
+
+    constructor(key: string, generateGuid: boolean) {
+        if (generateGuid) {
+            this.Value = key + '-' + Guid.raw();
+        } else {
+            this.Value = key;
+        }
+    }
+
+    static New(key: string, generateGuid: boolean = true): Id {
+        return new Id(key, generateGuid);
+    }
+}
+

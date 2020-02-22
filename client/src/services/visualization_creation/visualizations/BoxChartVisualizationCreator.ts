@@ -11,7 +11,7 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
     public Draw(): boolean {
 
         const Entry = this.Entries;
-        const id = '#' + Entry.id;
+        const id = '#' + Entry.id.Value;
         const graph = dc.boxPlot(id);
         const dim = Entry.ndx.dimension(d => "");
         const group = dim.group().reduce(

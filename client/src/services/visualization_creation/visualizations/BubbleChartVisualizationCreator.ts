@@ -11,7 +11,7 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
         console.log(this.Entries)
         const xEntry = this.Entries.Questions[0];
         const yEntry = this.Entries.Questions[1];
-        const id = '#' + this.Entries.id;
+        const id = '#' + this.Entries.id.Value;
 
         const graph = dc.bubbleChart(id);
         const dim = this.Entries.ndx.dimension(d => {

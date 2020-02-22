@@ -10,7 +10,7 @@ export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): boolean {
     console.log("Bar Box")
     const Entry = this.Entries;
-    const id = Entry.id;
+    const id = Entry.id.Value;
 
     const dimX = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
 

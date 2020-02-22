@@ -10,7 +10,7 @@ export class ParalleleChartVisualizationCreator extends VisualizationDrawer {
     public Draw(): boolean {
         console.log('Parallel chart');
         const Entry = this.Entries;
-        const id = Entry.id;
+        const id = Entry.id.Value;
 
         const dims = [];
         const groups = [];

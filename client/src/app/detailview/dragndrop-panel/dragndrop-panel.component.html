@@ -1,2 +1,98 @@
+<div cdkDropListGroup class="DragDropContainer">
+  <div *ngFor="let group of cardsCreationService.container; index as i;" class="example-container">
+    <div  cdkDropList class="example-list" [cdkDropListData]=group (cdkDropListDropped)="drop($event)">
+    <h3>Group {{i}}</h3>
+    <p>Taille {{group.length}}</p>
+      <mat-card *ngFor="let viz of group" class="node example-box" cdkDragBoundary=".DragDrop" cdkDrag (cdkDragStarted)="drag($event)">
+        <mat-card-header>
+          Visualization
+        </mat-card-header>
+        <div class="container">
+          <div class="box-viz">
+            <div width="max-content" id={{viz.Id.Value}} class="figure"></div>
+          </div>
+        </div>
+        <button mat-icon-button>
+          <mat-icon>zoom_in</mat-icon>
+        </button>
+        <button mat-button color="warn" (click)=DeleteCard(viz)>Delete</button>
+        <div class="drag-handle">
+          <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+            </path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- </ng-template> -->
+
 <!-- <p>Visualizations that should me created: {{data}}</p> -->
-<template #cardContainer></template>
+<!-- <template #cardContainer></template> -->
+<!-- <div cdkDropListGroup>
+<div *ngFor="let ititemem of cardsCreationService.container">
+  <div 
+  cdkDropList
+  [cdkDropListData]= item
+  (cdkDropListDropped)="drop($event)"
+  cdkDragBoundary=".DragDrop" cdkDrag
+>
+  <div *ngIf="isSingleViz(item); then VizBlock else GroupBlock"></div>
+  <ng-template #VizBlock>
+    <mat-card class="node" cdkDragBoundary=".DragDrop" cdkDrag>
+      <mat-card-header>
+        <p>{{item}}</p>
+      </mat-card-header>
+      <div class="container">
+        <div class="box-viz">
+          <div width="max-content" id={{item}} class="figure"></div>
+        </div>
+      </div>
+      <button mat-icon-button>
+        <mat-icon>zoom_in</mat-icon>
+      </button>
+      <button mat-button color="warn" (click)=DeleteCard(item)>Delete</button>
+      <div class="drag-handle" cdkDragHandle>
+        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+          </path>
+          <path d="M0 0h24v24H0z" fill="none"></path>
+        </svg>
+      </div>
+    </mat-card>
+   </ng-template>
+  <ng-template #GroupBlock>
+    <div class="Group-container">
+      <div *ngFor="let groupItem of item.visualizations">
+        <mat-card class="node" cdkDragBoundary=".DragDrop" cdkDrag>
+          <mat-card-header>
+            <p>{{item}}</p>
+          </mat-card-header> 
+          <div class="container">
+            <div class="box-viz">
+              <div width="max-content" id={{groupItem}} class="figure"></div>
+            </div>
+          </div>
+          <button mat-icon-button>
+            <mat-icon>zoom_in</mat-icon>
+          </button>
+          <button mat-button color="warn" (click)=DeleteCard(item)>Delete</button>
+          <div class="drag-handle" cdkDragHandle>
+            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+              </path>
+              <path d="M0 0h24v24H0z" fill="none"></path>
+            </svg>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+  </div>
+</div>
+</div> -->

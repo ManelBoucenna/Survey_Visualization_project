@@ -10,7 +10,7 @@ export class BalloonChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): boolean {
     console.log("Balloon chart")
     const Entry = this.Entries;
-    const id = Entry.id;
+    const id = Entry.id.Value;
 
     const dimX = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
     const dimY = Entry.ndx.dimension(d => d[Entry.Questions[1].variable]);

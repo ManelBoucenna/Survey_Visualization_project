@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
 // Data files
-import { CreationEntry } from 'src/helpers/types';
+import { CreationEntry, Id } from 'src/helpers/types';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class MetaviewComponent implements OnInit {
       this.drawChartService.data = data;
       // this.drawChartService.ndxOverviewMetadata = this.drawChartService.ndxOverviewMetadata;
       this.drawChartService.metadata.forEach(question => {
-        const id = 'metaview_' + question.variable;
+        const id = Id.New('metaview_' + question.variable, false);
         const creationEntry = new CreationEntry(id, [question], true, this.drawChartService.ndxOverviewMetadata);
         this.drawChartService.DrawVisualizationOverview(creationEntry);
       });

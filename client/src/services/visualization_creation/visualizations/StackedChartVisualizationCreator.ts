@@ -7,7 +7,7 @@ import * as dc from 'dc';
 export class StackedChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): boolean {
     const Entry = this.Entries;
-    const id = '#' + Entry.id;
+    const id = '#' + Entry.id.Value;
     const options = Entry.Questions[0].Options;
 
     //dimensions and groups:

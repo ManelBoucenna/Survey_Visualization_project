@@ -10,7 +10,7 @@ export class SankeyChartVisualizationCreator extends VisualizationDrawer {
 
     console.log('Sankey diagram');
     const Entry = this.Entries;
-    const id = Entry.id;
+    const id = Entry.id.Value;
 
     // Define the hierarchical categories of the sankey
     const dims = [];

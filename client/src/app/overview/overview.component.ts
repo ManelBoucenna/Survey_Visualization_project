@@ -6,7 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
 // Interfaces
-import { Question, CreationEntry } from 'src/helpers/types';
+import { Question, CreationEntry, Id } from 'src/helpers/types';
 // library
 import * as dc from 'dc';
 
@@ -38,7 +38,7 @@ export class OverviewComponent implements OnInit {
       this.drawChartService.data = data;
       this.drawChartService.ndxOverviewMetadata = this.drawChartService.dataManagement.getNdx(data);
       this.drawChartService.questionnaire.forEach(question => {
-        const id = 'overview_' + question.variable;
+        const id = Id.New('overview_' + question.variable, false);
         const questions: Question[] = [question];
         const creationEntry = new CreationEntry(id, questions, true, this.drawChartService.ndxOverviewMetadata);
         this.drawChartService.DrawVisualizationOverview(creationEntry);
@@ -60,7 +60,8 @@ export class OverviewComponent implements OnInit {
     }, 750);
 
   }
-  private ResetFilters() {
-    console.log('Reset');
+  public ResetFilters() {
+    console.log("Reset")
+    dc.redrawAll();
   }
 }

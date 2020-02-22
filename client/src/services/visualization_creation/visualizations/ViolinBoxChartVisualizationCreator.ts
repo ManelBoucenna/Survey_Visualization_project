@@ -11,7 +11,7 @@ export class ViolinBoxChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): boolean {
     console.log('Violin box diagram');
     const Entry = this.Entries;
-    const id = Entry.id;
+    const id = Entry.id.Value;
 
     let categorical_var = null;
     let numerical_var = null;

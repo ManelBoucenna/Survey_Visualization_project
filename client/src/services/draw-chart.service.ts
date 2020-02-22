@@ -1,8 +1,9 @@
+import { Guid } from 'guid-typescript';
 // Angular libs
 import { Injectable } from '@angular/core';
 
 // Data files
-import { CreationEntry, Question } from './../helpers/types';
+import { CreationEntry, Question, Id } from './../helpers/types';
 import { Visualization } from '../helpers/enums';
 import { allData } from 'src/assets/data/allData';
 
@@ -64,7 +65,7 @@ export class DrawChartService {
   * @param {String[]}: Input of questions
   * @return {CreationEntry}: Object used to draw the visualization
   */
-  public GetCreationEntries(id: string, questions: string[]): CreationEntry {
+  public GetCreationEntries(id: Id, questions: string[]): CreationEntry {
     const questionEntries: Question[] = [];
     const Overview = false;
     const ndx = this.dataManagement.getNdx(this.data);
