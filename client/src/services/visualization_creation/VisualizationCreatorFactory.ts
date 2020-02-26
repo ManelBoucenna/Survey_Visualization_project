@@ -4,6 +4,7 @@ import { CreationEntry } from 'src/helpers/types';
 // Visualizations
 import { BoxChartVisualizationCreator } from './visualizations/BoxChartVisualizationCreator';
 import { BarChartVisualizationCreator } from './visualizations/BarChartVisualizationCreator';
+import { DetailledBarChartVisualizationCreator } from './visualizations/DetailledBarChartVisualizationCreator';
 import { BarBoxChartVisualizationCreator } from './visualizations/BarBoxChartVisualizationCreator';
 import { BubbleChartVisualizationCreator } from './visualizations/BubbleChartVisualizationCreator';
 import { LineChartVisualizationCreator } from './visualizations/LineChartVisualizationCreator';
@@ -18,6 +19,7 @@ export class VisualizationDrawerFactory {
     public static Create(visualization: Visualization, creationEntry: CreationEntry): VisualizationDrawer {
         switch (visualization) {
             case Visualization.BarChart: return new BarChartVisualizationCreator(creationEntry);
+            case Visualization.DetailledBarChart: return new DetailledBarChartVisualizationCreator(creationEntry);
             case Visualization.BarBoxChart: return new BarBoxChartVisualizationCreator(creationEntry);
             case Visualization.BoxChart: return new BoxChartVisualizationCreator(creationEntry);
             case Visualization.BubbleChart: return new BubbleChartVisualizationCreator(creationEntry);

@@ -15,7 +15,7 @@ export class DistributionVisualizationSuggestor extends VisualizationSuggestor {
         const category = Questionnaire.filter(q => q.variable === selectedQuestion).pop().category;
         switch (category) {
             case Category.MultipleChoices: {
-                return Visualization.BarChart;
+                return Visualization.DetailledBarChart;
             }
             case Category.RatingScale: {
                 return Visualization.BarBoxChart;

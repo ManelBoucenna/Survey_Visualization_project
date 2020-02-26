@@ -9,7 +9,7 @@
 
 .sidenav {
     grid-area: sidenav;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #3a74b73b;
 }
 

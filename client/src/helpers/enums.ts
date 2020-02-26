@@ -6,6 +6,7 @@ export enum Task {
 
 export enum Visualization {
     BarChart,
+    DetailledBarChart,
     BoxChart,
     LineChart,
     BubbleChart,

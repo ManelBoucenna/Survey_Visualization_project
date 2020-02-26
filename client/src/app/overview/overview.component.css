@@ -4,7 +4,7 @@
 
 .container {
     display: flex;
-    height: fit-content;
+    min-height: fit-content;
     flex-direction: row;
     flex-wrap: wrap;
     
@@ -15,8 +15,8 @@
     padding: 5px;
     display: flex;
     flex-direction: column;
-    width: 80px;
-    height: 40px;
+    min-width: 80px;
+    min-height: 40px;
     border-radius: 4px;
     background-color: #fafafa;
 }

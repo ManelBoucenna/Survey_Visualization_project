@@ -131,7 +131,16 @@ export const questionnaire = [
         variable: 'IMD3001_PR_1',
         question: 'TURNOUT-CURRENT PRESIDENTIAL ELECTION-ROUND 1',
         category: 'Multiple choices',
-        Options: { 0: 'RESPONDENT DID NOT CAST A BALLOT', 1: 'RESPONDENT CAST A BALLOT ', 9999993: 'VOLUNTEERED: RESPONDENT NOT REGISTERED ON ELECTORAL LISTS', 9999995: 'NOT APPLICABLE: NO ROLE OF PRESIDENT', 9999996: 'NOT APPLICABLE: NO PRESIDENTIAL ELECTIONS', 9999997: 'VOLUNTEERED: REFUSED', 9999998: 'VOLUNTEERED: DON\'T KNOW', 9999999: 'MISSING' }
+        Options: {
+            0: 'RESPONDENT DID NOT CAST A BALLOT',
+            1: 'RESPONDENT CAST A BALLOT ',
+            9999993: 'VOLUNTEERED: RESPONDENT NOT REGISTERED ON ELECTORAL LISTS',
+            9999995: 'NOT APPLICABLE: NO ROLE OF PRESIDENT',
+            9999996: 'NOT APPLICABLE: NO PRESIDENTIAL ELECTIONS',
+            9999997: 'VOLUNTEERED: REFUSED',
+            9999998: 'VOLUNTEERED: DON\'T KNOW',
+            9999999: 'MISSING'
+        }
     },
     {
         id: 9,
@@ -181,31 +190,184 @@ export const questionnaire = [
             9999999: 'MISSING'
         }
     },
-    //  {
-    //      id: 37,
-    //      variable: 'IMD3005_4',
-    //      question: 'PARTY IDENTIFICATION: HOW CLOSE',
-    //      category: 'Rating scale',
-    //      Options: {
-    //          1: 'VERY CLOSE', 
-    //          2: 'SOMEWHAT CLOSE', 
-    //          3: 'NOT VERY CLOSE', 
-    //          7: 'VOLUNTEERED: REFUSED', 
-    //          8: 'VOLUNTEERED: DON\'T KNOW', 
-    //          9: 'MISSING'}
-    //      },
     {
         id: 37,
         variable: 'IMD3005_4',
         question: 'PARTY IDENTIFICATION: HOW CLOSE',
         category: 'Rating scale',
         Options: {
-            1: 3,
-            2: 2,
-            3: 1,
-            7: 0,
-            8: 0,
-            9: -1
+            1: '3',
+            2: '2',
+            3: '1',
+            7: 'VOLUNTEERED: REFUSED',
+            8: 'VOLUNTEERED: DON\'T KNOW',
+            9: 'Missing'
+        }
+    }, {
+        id: 38,
+        variable: 'IMD3005_1',
+        question: 'PARTY IDENTIFICATION: ARE YOU CLOSE TO ANY POLITICAL PARTY',
+        category: 'Multiple choices',
+        Options: {
+            1: 'YES',
+            5: 'NO',
+            7: 'REFUSED',
+            8: 'DON\'T KNOW',
+            9: 'MISSING'
+        }
+    },
+    {
+        id: 39,
+        variable: 'IMD3005_2',
+        question: 'PARTY IDENTIFICATION: DO YOU FEEL CLOSER TO ONE PARTY',
+        category: 'Multiple choices',
+        Options: {
+            1: 'YES',
+            5: 'NO',
+            7: 'REFUSED',
+            8: 'DON\'T KNOW',
+            9: 'MISSING'
+        }
+    },
+    {
+        id: 40,
+        variable: 'IMD3006',
+        question: 'LEFT-RIGHT - SELF',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            97: -1,
+            98: -2,
+            99: -3
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_A',
+        question: 'LEFT-RIGHT-PARTY A',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 42,
+        variable: 'IMD3008_A',
+        question: 'LIKE-DISLIKE-PARTY A',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_A',
+        question: 'LIKE-DISLIKE-LEADER A',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 44,
+        variable: 'IMD3010',
+        question: 'SATISFACTION WITH DEMOCRACY',
+        category: 'Rating scale',
+        Options: {
+            5: 1,
+            4: 2,
+            6: 3,
+            2: 4,
+            1: 5,
+            7: -1,
+            8: -2,
+            9: -3
+        }
+    },
+    {
+        id: 45,
+        variable: 'IMD3011',
+        question: 'EFFICACY: WHO IS IN POWER CAN MAKE A DIFFERENCE',
+        category: 'Rating scale',
+        Options: {
+            5: 1,
+            4: 2,
+            3: 3,
+            2: 4,
+            1: 5,
+            7: -1,
+            8: -2,
+            9: -3
+        }
+    },
+    {
+        id: 46,
+        variable: 'IMD3012',
+        question: 'EFFICACY: WHO PEOPLE VOTE FOR MAKES A DIFFERENCE',
+        category: 'Rating scale',
+        Options: {
+            5: 1,
+            4: 2,
+            3: 3,
+            2: 4,
+            1: 5,
+            7: -1,
+            8: -2,
+            9: -3
         }
     }
 ];

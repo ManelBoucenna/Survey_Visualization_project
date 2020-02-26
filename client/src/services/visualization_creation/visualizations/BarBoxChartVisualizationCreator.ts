@@ -8,28 +8,47 @@ declare var Plotly: any;
 export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
 
   public Draw(): boolean {
-    console.log("Bar Box")
+    console.log('Bar Box')
     const Entry = this.Entries;
     const id = Entry.id.Value;
 
     const dimX = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
+    const group = dimX.group().reduceCount().all();
 
+    const BarX = unpack(group, 'key');
+    const BarY = unpack(group, 'value');
+    const boxData = unpack(dimX.filter(d => (d > 0)).top(Infinity), Entry.Questions[0].variable);
 
-    const BarX = unpack(dimX.group().reduceCount().all(), "key");
-    const BarY = unpack(dimX.group().reduceCount().all(), "value");
-    const boxData = unpack(dimX.top(Infinity),Entry.Questions[0].variable);
+    function colors(array) {
+      const color = [];
+      array.forEach(element => {
+        if (element > 0) { color.push('rgb(166,206,227)'); }
+        else color.push('rgb(227,26,28)')
+      });
+      return color
+    }
 
-    var trace1 = {
-      x: BarX,
+    function categories(array) {
+      const category = [];
+      array.forEach(element => {
+        if (element > 0) { category.push('Ratings'); }
+        else category.push('Other')
+      });
+      return category
+    }
+
+    const trace1 = {
+      x: [categories(BarX), BarX],
       y: BarY,
       type: 'bar',
+      marker: { color: colors(BarX) }
     };
 
-    var trace2 = {
+    const trace2 = {
       x: boxData,
       type: 'box',
-      xaxis:"x2",
-      yaxis:"y2"
+      xaxis: 'x2',
+      yaxis: 'y2'
     };
 
     var data = [trace1, trace2];
@@ -41,14 +60,17 @@ export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
       margin: {
         l: 25,
         r: 10,
-        b: 15,
+        b: 20,
         t: 0,
         pad: 0
       },
       grid: {
         rows: 2,
         columns: 1,
-        pattern: 'independent'}
+        pattern: 'independent'
+      },
+      // xaxis: {range: [-2, 4]},
+      xaxis2: {range: [-2, 3]},
     };
 
     Plotly.newPlot(id, data, layout);

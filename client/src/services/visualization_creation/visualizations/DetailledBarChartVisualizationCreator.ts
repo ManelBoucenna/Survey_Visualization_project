@@ -4,7 +4,7 @@ import { VisualizationDrawer } from '../VisualizationDrawer';
 import * as d3 from 'd3';
 import * as dc from 'dc';
 
-export class BarChartVisualizationCreator extends VisualizationDrawer {
+export class DetailledBarChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): boolean {
     console.log("Bar chart")
 
@@ -15,13 +15,13 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
 
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
     const max = dim.top(Infinity).length;
-    let group = dim.group().reduceCount();
+    const group = dim.group().reduceCount();
     group.all().forEach((item, index) => {
       item["value"] = (item["value"] * 100 / max).toFixed(2);
     });
     const staticGroup = super.StaticCopyGroup(group);
-    const margin = { left: 5, right: 5, top: 5, bottom: 5 }
-    const size = [80, 70, margin];
+    const margin = { left: 5, right: 5, top: 5, bottom: 45 }
+    const size = [300, 100, margin];
 
 
     graph.compose([
@@ -30,34 +30,40 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
         .group(staticGroup)
         .colors('#ccc')// same as .deselected
         .controlsUseVisibility(true)
-        .barPadding(0.5)
+        .barPadding(0.7)
         .centerBar(true),
       dc.barChart(graph)
         .dimension(dim)
         .group(group)
-        .ordering((d) => -d.value)
-        .controlsUseVisibility(true)
-        .brushOn(false)
-        .barPadding(0.5)
+        .barPadding(0.7)
         .centerBar(true),
+
     ]);
 
     graph
-      .width(size[0]).height(size[1]).margins(size[2])
+      .width(size[0]).height(size[1])
+      // .margins(size[2])
       .dimension(dim)
       .group(group)
       .ordering((d) => -d.value)
       .x(d3.scaleBand())
       .xUnits(dc.units.ordinal)
-      .brushOn(true)
+      .y(d3.scaleLinear().domain([0, 100]))
+      .brushOn(false)
+      .renderHorizontalGridLines(true)
+      .xAxisLabel('');
 
-
-    graph.y(d3.scaleLinear().domain([0, 100]))
-    graph.renderHorizontalGridLines(true);
-
-    graph.xAxis().tickValues([]);
+    // graph.xAxis().tickValues([]);
     graph.yAxis().tickValues([50]);
+
+    graph.on("renderlet", function (chart) {
+      // rotate x-axis labels
+      graph.selectAll('g.tick text')
+        .attr('transform', 'rotate(45)')
+        .style("text-anchor", "start");
+    });
     graph.render();
+
 
     return true;
   }
