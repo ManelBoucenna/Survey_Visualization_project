@@ -15,31 +15,23 @@ import { CardsCreationService } from 'src/services/cards-creation.service';
 })
 export class CardVizComponent implements AfterViewInit {
   id: any;
-  task: string;
   visualization: Visualization;
-  variable: string;
-  creationEntries: CreationEntry;
+  group: string;
   created: boolean;
 
 
   constructor(
     private drawChartService: DrawChartService,
-    public dialog: MatDialog,
     public cardsCreationService: CardsCreationService) {
   }
 
   ngAfterViewInit(): void {
-    this.drawChartService.DrawVisualizationDetail(this.visualization, this.creationEntries);
+    // this.drawChartService.DrawVisualizationDetail(this.visualization, this.creationEntries);
   }
 
   // DestroyComponent(): boolean {
   //   // return this.cardsCreationService.DeleteVisualization(this.id);
   // }
-
-  OpenZoom(): void {
-    window.alert('Allo');
-  }
-
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer !== event.container) {
       transferArrayItem(event.previousContainer.data,

@@ -1,9 +1,6 @@
 import { Task, Visualization, ValidationStatus } from './enums';
-import { withLatestFrom } from 'rxjs/operators';
 import { Guid } from 'guid-typescript';
-import { getMatIconNameNotFoundError } from '@angular/material';
 
-const nameof = <T>(name: keyof T) => name;
 
 export class Question {
     id: number;
@@ -18,6 +15,7 @@ export class CreationEntry {
     public id: Id;
     public Questions: Question[];
     public ndx: any;
+    public group: any = null;
     public Overview: boolean;
     public width: number;
     public height: number;

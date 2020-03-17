@@ -14,7 +14,7 @@ mongoose.model("Survey", Survey);
 
 mongoose.Promise = global.Promise; 
 
-mongoose.connect("mongodb://127.0.0.1:27017/cses_small",{ useNewUrlParser: true });
+mongoose.connect("mongodb://Manal:Malik199@ds031213.mlab.com:31213/manel_tp4",{ useNewUrlParser: true });
 mongoose.connection.on('connected', function(){
     console.log("connection successful");
 });

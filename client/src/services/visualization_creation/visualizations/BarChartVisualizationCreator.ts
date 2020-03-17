@@ -5,23 +5,23 @@ import * as d3 from 'd3';
 import * as dc from 'dc';
 
 export class BarChartVisualizationCreator extends VisualizationDrawer {
-  public Draw(): boolean {
+  public Draw(): any {
     console.log("Bar chart")
 
     const Entry = this.Entries;
     const id = Entry.id;
     const graph = dc.compositeChart("#" + id.Value);
 
-
+    //C rossfilter dimension and group setup
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
+    const group = dim.group().reduceCount();
+
     const max = dim.top(Infinity).length;
-    let group = dim.group().reduceCount();
-    group.all().forEach((item, index) => {
-      item["value"] = (item["value"] * 100 / max).toFixed(2);
-    });
+    const middle = (max / 2).toFixed(0);
+
     const staticGroup = super.StaticCopyGroup(group);
-    const margin = { left: 5, right: 5, top: 5, bottom: 5 }
-    const size = [80, 70, margin];
+    const margin = { left: 5, right: 5, top: 5, bottom: 5 };
+    const size = [80, 50, margin];
 
 
     graph.compose([
@@ -52,14 +52,16 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
       .brushOn(true)
 
 
-    graph.y(d3.scaleLinear().domain([0, 100]))
+    graph.y(d3.scaleLinear().domain([0, max]))
     graph.renderHorizontalGridLines(true);
 
     graph.xAxis().tickValues([]);
-    graph.yAxis().tickValues([50]);
+    graph.yAxis().tickValues([middle]);
     graph.render();
 
-    return true;
+
+    //console.log(graph)
+    return graph;
   }
 
 }

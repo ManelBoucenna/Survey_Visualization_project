@@ -14,7 +14,6 @@ import { CardEntry } from 'src/helpers/types';
 export class DragndropPanelComponent implements OnInit {
 
   @ViewChild('cardContainer', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
-
   constructor(public cardsCreationService: CardsCreationService) { }
 
   ngOnInit() { }

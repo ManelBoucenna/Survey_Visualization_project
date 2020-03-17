@@ -23,9 +23,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
-
+import { NotficationService } from 'src/services/notification-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,9 +56,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDialogModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatTooltipModule,
+
+    ScrollingModule
 
   ],
-  providers: [],
+  providers: [NotficationService],
   bootstrap: [AppComponent],
   entryComponents: [CardVizComponent]
 })

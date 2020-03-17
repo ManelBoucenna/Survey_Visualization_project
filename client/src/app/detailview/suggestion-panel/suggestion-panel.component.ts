@@ -56,7 +56,7 @@ export class SuggestionPanelComponent implements OnInit {
     private drawChartService: DrawChartService,
     private suggestChartService: SuggestChartService,
     private cardCreationService: CardsCreationService
-  ) { }
+  ){}
 
   ngOnInit() {
     this.questionnaire = this.drawChartService.questionnaire;

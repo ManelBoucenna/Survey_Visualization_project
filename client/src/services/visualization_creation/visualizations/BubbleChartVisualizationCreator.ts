@@ -7,7 +7,7 @@ import * as d3 from 'd3';
 import * as dc from 'dc';
 
 export class BubbleChartVisualizationCreator extends VisualizationDrawer {
-    public Draw(): boolean {
+    public Draw(): any {
         console.log(this.Entries)
         const xEntry = this.Entries.Questions[0];
         const yEntry = this.Entries.Questions[1];
@@ -23,14 +23,23 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
 
         );
         const group = dim.group().reduceCount();
+        console.log(group.all())
+        const dimX = this.Entries.ndx.dimension(d => {
+            return d[xEntry.variable];
+        });
+        const dimY = this.Entries.ndx.dimension(d => {
+            return d[yEntry.variable];
+        });
+        const rangex = [dimX.bottom(1)[0][xEntry.variable] - 10, dimX.top(1)[0][xEntry.variable] + 10];
+        const rangey = [dimY.bottom(1)[0][yEntry.variable] - 10, dimY.top(1)[0][yEntry.variable] + 10];
 
-        const width = 200;
-        const height = 200;
-        const margins = this.Entries.margins;
+        const width = 400;
+        const height = 400;
+        const margins =  { left: 50, right: 50, top: 50, bottom: 50 };
 
         graph
             .width(width).height(height)
-            // .margins(margins)
+            .margins(margins)
             .dimension(dim)
             .group(group)
             .minRadius(10)
@@ -46,28 +55,26 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
                 return p.key[1];
             })
             .radiusValueAccessor(function (p) {
-                return 4;
+                return p.value / 100;
             })
             // .x(d3.scaleBand())
-            .x(d3.scaleBand())//.domain([-1, 6]))
-            .y(d3.scaleLinear().domain([-1, 5]))
-            .xUnits(dc.units.ordinal)
-            .elasticY(true)
-            .elasticX(true)
+            .x(d3.scaleLinear().domain(rangex))
+            .y(d3.scaleLinear().domain(rangey))
+            // .xUnits(dc.units.ordinal)
+            .elasticY(false)
+            .elasticX(false)
             .renderHorizontalGridLines(true)
             .renderVerticalGridLines(true)
-            .renderLabel(true)
-            .renderTitle(true)
+            .renderLabel(false)
+            .renderTitle(false)
             .title(function (p) {
-                return p.key[0]
-                    + "\n"
-                    + xEntry.variable + "" + p.key[0] + "\n"
-                    + yEntry.variable + "" + p.key[1] + "\n"
+                return xEntry.variable + ": " + p.key[0] + "\n"
+                    + yEntry.variable + ": " + p.key[1] + "\n"
                     + "Count: " + p.value;
             });
 
-        // graph.xAxis().tickValues([]);
-        // graph.yAxis().tickValues([]);
+        graph.xAxis().ticks(5).tickFormat(d => String(d));
+        graph.yAxis().ticks(5).tickFormat(d => String(d));
 
         graph.render();
         return true;

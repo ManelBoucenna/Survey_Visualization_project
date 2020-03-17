@@ -5,13 +5,16 @@ import * as d3 from 'd3';
 import * as dc from 'dc';
 
 export class StackedChartVisualizationCreator extends VisualizationDrawer {
-  public Draw(): boolean {
+  public Draw(): any {
     const Entry = this.Entries;
     const id = '#' + Entry.id.Value;
-    const options = Entry.Questions[0].Options;
+    const notificationService = this.notificationService_;
 
     //dimensions and groups:
     const variable = Entry.Questions[0].variable;
+    const dim = Entry.ndx.dimension(d => [d['IMD1008_YEAR'], d[variable]]);
+    const options = [...new Set(dim.group().all().map(d => d.key[1]))];
+
     const xdim = Entry.ndx.dimension(d => d['IMD1008_YEAR']);
     const ydim = xdim.group().reduce(
       function (p, v) {
@@ -34,38 +37,43 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
 
 
     const graph = dc.barChart(id);
-    // const width = Entry.width;
-    // const height = Entry.height;
-    // const margins = Entry.margins;
-
     const width = 200;
     const height = 200;
-    const margins = { left: 50, right: 0, top: 0, bottom: 20 };
+    const margins = { left: 40, right: 0, top: 50, bottom: 20 };
     let start = 0;
     for (const [key, value] of Object.entries(options)) {
-
       if (start === 0) {
-        console.log(value, ':', sel_stack(value))
         graph.width(width).height(height).margins(margins)
           .dimension(xdim)
           .group(ydim, value, sel_stack(value))
           .x(d3.scaleOrdinal().domain(xdim))
           .xUnits(dc.units.ordinal)
           .renderHorizontalGridLines(true)
-          .elasticY(true)
-          .elasticX(true)
-          .renderLabel(true)
-          .renderTitle(true)
-        // .legend(dc.legend());
+          .renderLabel(false)
+          .brushOn(false)
+          .title(function (d) {
+            return d.key + '+' + this.layer + ': ' + d.value[this.layer];
+          });
         start += 1;
       } else {
-        console.log(value, ':', sel_stack(value));
-        graph.stack(ydim, value, sel_stack(value))
+        graph.stack(ydim, value, sel_stack(value));
       }
     }
 
+    graph.yAxis().ticks(3).tickFormat(d => String(d));
+    graph.y(d3.scaleLinear().domain([0, 2000]));
+
+    graph.on('renderlet', function (chart) {
+      chart.selectAll('rect.bar').on('dblclick', function (d) {
+        dim.filter(elem => (elem[0] === d.x && elem[1] === d.layer));
+        notificationService.emit(Entry.group);
+      });
+      chart.selectAll('rect.bar').on('lclick', function (d) {
+        notificationService.emit(Entry.group);
+      });
+    });
     graph.render();
-    return true;
+    return graph;
   }
 
 

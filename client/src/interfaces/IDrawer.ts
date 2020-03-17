@@ -1,4 +1,4 @@
 export interface IDrawer {
-    Draw(): boolean;
+    Draw(): any;
 }
 

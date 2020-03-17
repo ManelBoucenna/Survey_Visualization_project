@@ -1,10 +1,14 @@
+import { Guid } from 'guid-typescript';
 import { Injectable, ComponentFactoryResolver, } from '@angular/core';
 import { CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 // Data files
-import { CardEntry, Id } from 'src/helpers/types';
+import { CardEntry } from 'src/helpers/types';
 //services
 import { DrawChartService } from 'src/services/draw-chart.service';
 import { DataManagementService } from 'src/services/data-management.service';
+import { GroupCreationService } from './groups-creation';
+import { NotficationService } from 'src/services/notification-service';
+
 @Injectable(
   {
     providedIn: 'root'
@@ -13,17 +17,25 @@ import { DataManagementService } from 'src/services/data-management.service';
 
 export class CardsCreationService {
   container: any[] = [];
+  groupedViz = {};
 
   constructor(
     private drawChartService: DrawChartService,
-    private dataManagementService: DataManagementService) { }
+    private dataManagementService: DataManagementService,
+    private notficationService: NotficationService) {
+    this.notficationService.listener.subscribe(
+      data => {
+        console.log("Group :", data);
+        this.RedrawAll(data);
+      }
+    );
+  }
 
   public createCard(cardEntry: CardEntry): Promise<any> {
+
     return new Promise(
       (resolve, reject) => {
         this.container.push([cardEntry]);
-        console.log("Created element");
-        console.log(this.container);
         resolve(this.container);
       }
     );
@@ -33,11 +45,12 @@ export class CardsCreationService {
     this.container.push([]);
   }
 
-  public moveCard(event: CdkDragDrop<CardEntry[]>) {
+  public moveCard(event: CdkDragDrop<any[]>) {
+    console.log(this.container);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex,event.currentIndex);
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       this.UpdateGroupVizs(event.container.data);
     }
     this.removeEmptyGroups();
@@ -64,7 +77,7 @@ export class CardsCreationService {
 
   public removeEmptyGroups() {
     for (let i = 0; i < this.container.length; i++) {
-      console.log(this.container[i]);
+      // console.log(this.container[i]);
       if (this.container[i].length === 0) {
         this.container.splice(i, 1);
         i--;
@@ -75,14 +88,20 @@ export class CardsCreationService {
 
   public UpdateGroupVizs(group: any) {
     const NewNdx = this.dataManagementService.getNdx(this.drawChartService.data);
+    let groupId = Guid.raw();
     group.forEach(elem => {
       const observer = new MutationObserver((mutations, me) => {
         const canvas = document.getElementById(elem.Id.Value);
         if (canvas) {
           elem.CreationEntries.ndx = NewNdx;
-          this.drawChartService.DrawVisualizationDetail(elem.Visualization, elem.CreationEntries);
+          elem.CreationEntries.group = groupId;
+          if (this.groupedViz[groupId] === undefined) {
+            this.groupedViz[groupId] = [this.drawChartService.DrawVisualizationDetail(elem.Visualization, elem.CreationEntries)];
+          } else {
+            this.groupedViz[groupId].push(this.drawChartService.DrawVisualizationDetail(elem.Visualization, elem.CreationEntries));
+          }
           me.disconnect(); // stop observing
-          return;
+          //return;
         }
       });
 
@@ -90,7 +109,15 @@ export class CardsCreationService {
         childList: true,
         subtree: true
       });
-    }
-    );
+    });
+    console.log(" My group is made of :", this.groupedViz)
+    GroupCreationService.groupedViz = this.groupedViz;
   }
+
+  public RedrawAll(groupId: any) {
+    if (this.groupedViz[groupId] !== undefined) {
+      this.groupedViz[groupId].forEach(elem => elem.redraw());
+    }
+  }
+
 }

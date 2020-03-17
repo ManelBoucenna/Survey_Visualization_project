@@ -62,6 +62,7 @@ export class OverviewComponent implements OnInit {
   }
   public ResetFilters() {
     console.log("Reset")
-    dc.redrawAll();
+    this.drawChartService.ResetFiltersOverview();
   }
+
 }

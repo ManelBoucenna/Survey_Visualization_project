@@ -8,8 +8,8 @@ import * as dc from 'dc';
 declare var Plotly: any;
 
 export class ViolinChartVisualizationCreator extends VisualizationDrawer {
-
-  public Draw(): boolean {
+  graph;
+  public Draw(): any {
     console.log('Violin diagram');
     const Entry = this.Entries;
     const id = Entry.id.Value;
@@ -64,9 +64,10 @@ export class ViolinChartVisualizationCreator extends VisualizationDrawer {
       }
     }
 
-    Plotly.newPlot(id, data, layout);
+    this.graph = document.getElementById(id);
+    Plotly.newPlot(this.graph, data, layout);
 
-    return true;
+    return this.graph;
   }
 
 }

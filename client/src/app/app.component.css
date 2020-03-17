@@ -9,8 +9,8 @@
 
 .sidenav {
     grid-area: sidenav;
-    min-height: 100vh;
-    background-color: #3a74b73b;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .main {
@@ -23,9 +23,8 @@
     justify-content: space-between;
 }
 
-app-detailview{
+app-detailview {
     /* background-color: grey; */
-    flex-grow : 1;
+    flex-grow: 1;
     height: 100%;
 }
-

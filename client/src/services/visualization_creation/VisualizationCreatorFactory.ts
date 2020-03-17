@@ -14,22 +14,25 @@ import { ViolinChartVisualizationCreator } from './visualizations/ViolinChartVis
 import { ViolinBoxChartVisualizationCreator } from './visualizations/ViolinBoxChartVisualizationCreator';
 import { StackedChartVisualizationCreator } from './visualizations/StackedChartVisualizationCreator';
 import {SankeyChartVisualizationCreator} from './visualizations/SankeyChartVisualizationCreator';
+import { NotficationService } from 'src/services/notification-service';
+
 
 export class VisualizationDrawerFactory {
-    public static Create(visualization: Visualization, creationEntry: CreationEntry): VisualizationDrawer {
+
+    public static Create(visualization: Visualization, creationEntry: CreationEntry, notficationService: NotficationService): VisualizationDrawer {
         switch (visualization) {
-            case Visualization.BarChart: return new BarChartVisualizationCreator(creationEntry);
-            case Visualization.DetailledBarChart: return new DetailledBarChartVisualizationCreator(creationEntry);
-            case Visualization.BarBoxChart: return new BarBoxChartVisualizationCreator(creationEntry);
-            case Visualization.BoxChart: return new BoxChartVisualizationCreator(creationEntry);
-            case Visualization.BubbleChart: return new BubbleChartVisualizationCreator(creationEntry);
-            case Visualization.LineChart: return new LineChartVisualizationCreator(creationEntry);
-            case Visualization.ParallelChart: return new ParalleleChartVisualizationCreator(creationEntry);
-            case Visualization.BalloonChart: return new BalloonChartVisualizationCreator(creationEntry);
-            case Visualization.ViolinChart: return new ViolinChartVisualizationCreator(creationEntry);
-            case Visualization.ViolinBoxChart: return new ViolinBoxChartVisualizationCreator(creationEntry);
-            case Visualization.StackedChart: return new StackedChartVisualizationCreator(creationEntry);
-            case Visualization.SankeyChart: return new SankeyChartVisualizationCreator(creationEntry);
+            case Visualization.BarChart: return new BarChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.DetailledBarChart: return new DetailledBarChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.BarBoxChart: return new BarBoxChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.BoxChart: return new BoxChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.BubbleChart: return new BubbleChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.LineChart: return new LineChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.ParallelChart: return new ParalleleChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.BalloonChart: return new BalloonChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.ViolinChart: return new ViolinChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.ViolinBoxChart: return new ViolinBoxChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.StackedChart: return new StackedChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.SankeyChart: return new SankeyChartVisualizationCreator(creationEntry, notficationService);
             default: return null;
         }
     }
