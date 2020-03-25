@@ -17,6 +17,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://Manal:Malik199@ds031213.mlab.com:31213/manel_tp4",{ useNewUrlParser: true });
 mongoose.connection.on('connected', function(){
     console.log("connection successful");
+    
 });
 
 module.exports = mongoose.model('Survey',Survey)

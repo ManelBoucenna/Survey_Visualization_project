@@ -35,7 +35,7 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
 
         const width = 400;
         const height = 400;
-        const margins =  { left: 50, right: 50, top: 50, bottom: 50 };
+        const margins = { left: 50, right: 50, top: 50, bottom: 50 };
 
         graph
             .width(width).height(height)
@@ -44,8 +44,8 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
             .group(group)
             .minRadius(10)
             .maxBubbleRelativeSize(0.3)
-            .colorAccessor(function (d) {
-                return "#a60000";
+            .colorAccessor(function () {
+                return '#a60000';
             })
             .keyAccessor(p => {
                 return p.key[0];
@@ -66,15 +66,17 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
             .renderHorizontalGridLines(true)
             .renderVerticalGridLines(true)
             .renderLabel(false)
-            .renderTitle(false)
+            .renderTitle(true)
             .title(function (p) {
-                return xEntry.variable + ": " + p.key[0] + "\n"
-                    + yEntry.variable + ": " + p.key[1] + "\n"
-                    + "Count: " + p.value;
+                console.log('hOVER BUBBEL');
+                return xEntry.question + ': ' + p.key[0] + '\n'
+                    + yEntry.question + ': ' + p.key[1] + '\n'
+                    + 'Count: ' + p.value;
             });
 
         graph.xAxis().ticks(5).tickFormat(d => String(d));
         graph.yAxis().ticks(5).tickFormat(d => String(d));
+
 
         graph.render();
         return true;

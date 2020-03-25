@@ -369,5 +369,19 @@ export const questionnaire = [
             8: -2,
             9: -3
         }
+    }, {
+        id: 47,
+        variable: 'IMD2007',
+        question: 'Rural or Urban residence',
+        category: 'Multiple choices',
+        Options: {
+            1: 'Rural area or village',
+            2: 'Small r middle-sized town',
+            3: 'Suburbs of large town or city',
+            4: 'Large town or city',
+            7: 'Refused',
+            8: 'Don\'t know',
+            9: 'Missing'
+        }
     }
 ];

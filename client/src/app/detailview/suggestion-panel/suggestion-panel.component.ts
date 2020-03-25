@@ -18,6 +18,7 @@ import { SuggestChartService } from 'src/services/suggest-chart.service';
 import { CardsCreationService } from 'src/services/cards-creation.service';
 import { VisualisationSuggestionValidator } from './../../../services/validators/VisualisationSuggestionValidator';
 // Visualization libraries
+import { DataProvider } from 'src/services/Data_provider.service';
 
 
 @Component({
@@ -49,20 +50,24 @@ export class SuggestionPanelComponent implements OnInit {
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
+  Data: any;
   @ViewChild('questionInput', { static: false }) questionInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private drawChartService: DrawChartService,
     private suggestChartService: SuggestChartService,
-    private cardCreationService: CardsCreationService
-  ){}
+    private cardCreationService: CardsCreationService,
+    dataProvider: DataProvider
+  ) {
+    this.Data = dataProvider.getData();
+  }
 
   ngOnInit() {
-    this.questionnaire = this.drawChartService.questionnaire;
-    this.metadata = this.drawChartService.metadata;
+    this.questionnaire = this.Data.questionnaire;
+    this.metadata = this.Data.metadata;
     this.questions = this.questions.concat(this.questionnaire, this.metadata);
-    this.IdQuestions = this.questions.map(item => item.variable);
+    this.IdQuestions = this.questions.map(item => item.question);
     // Check difference between IdQuestions and filteredQuestions
     this.filteredQuestions = this.filterQuestions(this.IdQuestions);
   }

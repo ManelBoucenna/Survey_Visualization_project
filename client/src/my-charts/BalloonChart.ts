@@ -59,9 +59,9 @@ export class BalloonChart {
     }
 
     draw() {
-        BalloonChart._graph.html("");
-        let svg = BalloonChart._graph.append('svg').attr('width', '450')
-            .attr('height', '450')
+        BalloonChart._graph.html('');
+        let svg = BalloonChart._graph.append('svg').attr('width', '400')
+            .attr('height', '400')
             .attr('class', 'background-style');
         let margin = { top: 10, right: 10, bottom: 50, left: 50 };
         let width = +svg.attr('width') - margin.left - margin.right;
@@ -106,6 +106,25 @@ export class BalloonChart {
             .attr('text-anchor', 'start');
         d3.selectAll('.axis text').style('font-size', '8px');
 
+        // d3.selectAll('.axis--y text')
+        //.each(d => {
+        //     if (d !== undefined) {
+        //         const textArr = d.split(' ');
+        //         d3.select(this).text(d => {
+        //             let text = "";
+        //             textArr.forEach(elem =>
+        //                 text+=elem+'<br>'))
+        //     }
+        //     console.log(textArr);
+        // }
+
+        // }
+        // )
+        // .attr('transform', 'translate(-10, 0) rotate(-90)')
+        // .attr('text-anchor', 'middle');
+
+
+
         //GRIDS
         g.append('g')
             .attr('class', 'grid')
@@ -138,11 +157,16 @@ export class BalloonChart {
         g.selectAll('.bubble1')
             .data(BalloonChart._fixedGroup.all())
             .enter()
-            .append('circle')
+            //.append('circle')
+            .append('rect')
             .attr('class', 'bubble1 bubble')
-            .attr('cx', function (d) { return x(d.key[0]); })
-            .attr('cy', function (d) { return y(d.key[1]); })
-            .attr('r', d => 30 * (d.value - min) / (max - min))
+            // .attr('cx', function (d) { return x(d.key[0]); })
+            // .attr('cy', function (d) { return y(d.key[1]); })
+            // .attr('r', d => 30 * (d.value - min) / (max - min))
+            .attr('x', (d) => x(d.key[0]))
+            .attr('y', (d) => y(d.key[1]))
+            .attr('width', d => 30 * (d.value - min) / (max - min))
+            .attr('height', d => 30 * (d.value - min) / (max - min))
             .style('fill', 'grey')
 
         g
@@ -151,11 +175,16 @@ export class BalloonChart {
             .selectAll('.bubble2')
             .data(BalloonChart._group.all())
             .enter()
-            .append('circle')
+            //.append('circle')
+            .append('rect')
             .attr('class', 'bubbleBlue bubble')
-            .attr('cx', function (d) { return x(d.key[0]); })
-            .attr('cy', function (d) { return y(d.key[1]); })
-            .attr('r', d => 30 * (d.value - min) / (max - min))
+            // .attr('cx', function (d) { return x(d.key[0]); })
+            // .attr('cy', function (d) { return y(d.key[1]); })
+            // .attr('r', d => 30 * (d.value - min) / (max - min))
+            .attr('x', (d) => x(d.key[0]))
+            .attr('y', (d) => y(d.key[1]))
+            .attr('width', d => 30 * (d.value - min) / (max - min))
+            .attr('height', d => 30 * (d.value - min) / (max - min))
             .style('fill', '#1f77b4')
             .on('mouseover', function (d, i) {
                 d3.select(this).transition()
@@ -229,7 +258,7 @@ export class BalloonChart {
     }
 
     redraw() {
-        console.log("Redraw Balloon")
+        console.log('Redraw Balloon')
         this.render();
         //  console.log('Group After', BalloonChart._group.all());
         // console.log(BalloonChart.balloonChart)

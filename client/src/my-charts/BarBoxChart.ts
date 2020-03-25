@@ -52,20 +52,13 @@ export class BarBoxChart {
         const boxData = unpack(BarBoxChart._dimension.filter(d => (d > 0)).top(Infinity), BarBoxChart._variable);
         const ranges = getRanges(BarX);
 
-        // const trace0 = {
-        //     x: [categories(BarX), BarX],
-        //     y: BarY,
-        //     type: 'bar',
-        //     xaxis: 'x1',
-        //     marker: { color: greys }
-        // };
-
         const trace1 = {
             x: [categories(BarX), BarX],
             y: BarY,
             type: 'bar',
             xaxis: 'x1',
-            marker: { color: colors(BarX) }
+            marker: { color: colors(BarX) },
+            hoverinfo: 'x+y'
         };
 
         const trace2 = {
@@ -75,15 +68,17 @@ export class BarBoxChart {
             yaxis: 'y2',
             marker: {
                 size: 1,
+                color: '#1f77b4',
 
             },
+            name:''
         };
 
         const data = [trace1, trace2];
 
         const layout = {
             showlegend: false,
-            width: 300,
+            //width: 300,
             height: 250,
             margin: {
                 l: 35,
@@ -99,6 +94,7 @@ export class BarBoxChart {
             },
             //xaxis1: { range: ranges },
             xaxis2: { range: ranges },
+            hovermode: 'closest',
         };
 
         Plotly.react(BarBoxChart._graph, data, layout, { displayModeBar: false });
@@ -107,7 +103,7 @@ export class BarBoxChart {
         function colors(array) {
             const color = [];
             array.forEach(element => {
-                if (element > 0) { color.push('rgb(166,206,227)'); } else { color.push('rgb(227,26,28)'); }
+                if (element > 0) { color.push('#1f77b4'); } else { color.push('rgb(227,26,28)'); }
             });
             return color;
         }

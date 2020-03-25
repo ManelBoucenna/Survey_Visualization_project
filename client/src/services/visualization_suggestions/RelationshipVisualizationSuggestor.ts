@@ -39,9 +39,9 @@ export class RelationshipVisualizationSuggestor extends VisualizationSuggestor {
 
         for (const element of questions) {
             if (categoryOld === null) {
-                categoryOld = questionnaire.filter(q => q.variable === element).pop().category;
+                categoryOld = questionnaire.filter(q => q.question === element).pop().category;
             } else {
-                categoryNew = questionnaire.filter(q => q.variable === element).pop().category;
+                categoryNew = questionnaire.filter(q => q.question === element).pop().category;
                 type = categoryNew;
                 if (categoryNew !== categoryOld) {
                     homogeneous = false;
@@ -66,7 +66,7 @@ export class RelationshipVisualizationSuggestor extends VisualizationSuggestor {
                 default:
                     alert('There is an error in question category: ' + dataType.Type);
                     break;
-            }
+            } 
         } else {
             return Visualization.ViolinChart;
         }

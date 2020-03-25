@@ -16,7 +16,8 @@ export enum Visualization {
     StackedChart,
     BarBoxChart,
     ViolinChart,
-    ViolinBoxChart
+    ViolinBoxChart,
+    Lollipop
 }
 
 export enum Category {

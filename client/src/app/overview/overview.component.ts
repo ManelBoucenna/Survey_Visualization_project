@@ -8,8 +8,7 @@ import { DrawChartService } from 'src/services/draw-chart.service';
 // Interfaces
 import { Question, CreationEntry, Id } from 'src/helpers/types';
 // library
-import * as dc from 'dc';
-
+import { DataProvider } from 'src/services/Data_provider.service';
 
 @Component({
   selector: 'app-overview',
@@ -24,31 +23,43 @@ export class OverviewComponent implements OnInit {
   IdCtrl = new FormControl();
   filteredQuestions: Observable<Question[]>;
 
-  constructor(public drawChartService: DrawChartService) {
-    this.questionnaire = this.drawChartService.questionnaire;
+  Data: any;
+
+  constructor(
+    public drawChartService: DrawChartService,
+    dataProvider: DataProvider) {
+    this.Data = dataProvider.getData();
+    this.questionnaire = this.Data.questionnaire; 
     this.filteredQuestions = this.IdCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(question => question ? this._filterQuestions(question) : this.drawChartService.questionnaire.slice())
+        map(question => question ? this._filterQuestions(question) : this.questionnaire.slice())
       );
   }
- 
+
   ngOnInit() {
-    this.drawChartService.dataManagement.getData().then(data => {
-      this.drawChartService.data = data;
-      this.drawChartService.ndxOverviewMetadata = this.drawChartService.dataManagement.getNdx(data);
-      this.drawChartService.questionnaire.forEach(question => {
-        const id = Id.New('overview_' + question.variable, false);
-        const questions: Question[] = [question];
-        const creationEntry = new CreationEntry(id, questions, true, this.drawChartService.ndxOverviewMetadata);
-        this.drawChartService.DrawVisualizationOverview(creationEntry);
+    this.questionnaire.forEach(question => {
+      const id = Id.New('overview_' + question.variable, false);
+      const questions: Question[] = [question];
+      const creationEntry = new CreationEntry(id, questions, true, this.Data.ndx);
+      const observer = new MutationObserver((mutations, me) => {
+        const canvas = document.getElementById(id.Value);
+        if (canvas) {
+          this.drawChartService.DrawVisualizationOverview(creationEntry);
+          me.disconnect(); // stop observing
+          return;
+        }
+      });
+      observer.observe(document, {
+        childList: true,
+        subtree: true
       });
     });
   }
 
   private _filterQuestions(value: string): Question[] {
     const filterValue = value.toLowerCase();
-    return this.drawChartService.questionnaire.filter(question => question.question.toLowerCase().indexOf(filterValue) === 0);
+    return this.questionnaire.filter(question => question.question.toLowerCase().indexOf(filterValue) === 0);
   }
 
   private submit(value: string) {

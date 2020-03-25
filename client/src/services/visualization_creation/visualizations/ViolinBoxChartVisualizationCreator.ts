@@ -4,7 +4,6 @@ import { Category } from 'src/helpers/enums';
 // Visualization libraries
 import * as d3 from 'd3';
 import * as dc from 'dc';
-declare var Plotly: any;
 
 export class ViolinBoxChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): any {
@@ -12,69 +11,57 @@ export class ViolinBoxChartVisualizationCreator extends VisualizationDrawer {
     const Entry = this.Entries;
     const id = Entry.id.Value;
 
-    let categorical_var = null;
-    let numerical_var = null;
+    const notificationService = this.notificationService_;
 
-    categorical_var = "IMD1008_YEAR";
-    numerical_var = Entry.Questions[0].variable;
+    const categoricalVar = 'IMD1008_YEAR';
+    const numericalVar = Entry.Questions[0].variable;
+ 
+    const dimX = Entry.ndx.dimension(d => d[categoricalVar]);
+    const groupY = dimX.group().reduce(
+      (p, v) => {
+        // Retrieve the data value, if not Infinity or null add it.
+        const dv = v[numericalVar];
+        if (dv !== Infinity && dv != null && dv > 0) { p.splice(d3.bisectLeft(p, dv), 0, dv); }
+        return p;
+      },
+      (p, v) => {
+        // Retrieve the data value, if not Infinity or null remove it.
+        const dv = v[numericalVar];
+        if (dv !== Infinity && dv != null && dv > 0) { p.splice(d3.bisectLeft(p, dv), 1); }
+        return p;
+      },
+      () => {
+        return [];
+      }
+    );
 
-    const dim = Entry.ndx.dimension(d => d[numerical_var]);
-    let rows = dim.top(Infinity);
+    // const dim = Entry.ndx.dimension(d => d[numerical_var]);
+    // let rows = dim.top(Infinity);
+    const figure = dc.boxPlot('#' + id);
+    figure
+      .width(320)
+      .height(250)
+      .dimension(dimX)
+      .group(groupY)
+      .tickFormat(d3.format('.1f'))
+      .renderDataPoints(true)
+      .renderTitle(true)
+      .dataOpacity(1)
+      .dataWidthPortion(2)
+      .elasticY(false)
+      .elasticX(false)
+      ;
+    figure.ordinalColors(['#A07A19', '#AC30C0', '#EB9A72', '#BA86F5', '#EA22A8']);
+    figure.colorAccessor((data) => data.key);
+    figure.render();
 
-    let figure: any = document.getElementById(id);
-    function unpack(rows, key) {
-      return rows.map(function (row) { return row[key]; });
-    }
-    function react() {
-      var data = [{
-        type: 'violin',
-        x: unpack(rows, categorical_var),
-        y: unpack(rows, numerical_var),
-        points: 'none',
-        box: {
-          visible: true
-        },
-        line: {
-          color: 'grey',
-        },
-        meanline: {
-          visible: true
-        }
-      }]
-
-      let layout = {
-        width: 250,
-        height: 250,
-        margin: {
-          l: 10,
-          r: 10,
-          b: 20,
-          t: 5,
-          pad: 0
-        },
-        yaxis: {
-          zeroline: false,
-          automargin: true,
-        }
-      };
-
-      return Plotly.react(id, data, layout);
-    }
-
-    react();
-    function onUpdate(e) {
-      console.log("EVENT")
-      // react();
-      return true;
-    }
-
-    figure.on('plotly_click', onUpdate);
-    figure.on('plotly_selected', onUpdate);
-    figure.on('plotly_doubleclick', onUpdate);
-    figure.on('plotly_selecting', onUpdate);
-
-
+    figure.on('renderlet', () => {
+      figure.selectAll('g.box').on('click', e => {
+        console.log(e.key);
+        dimX.filter(d => d === e.key);
+        notificationService.emit(Entry.group);
+      });
+    });
     return figure;
-
   }
 }

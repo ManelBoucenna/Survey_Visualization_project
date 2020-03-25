@@ -13,25 +13,28 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
         const Entry = this.Entries;
         const id = '#' + Entry.id.Value;
         const graph = dc.boxPlot(id);
-        const dim = Entry.ndx.dimension(d => "");
+        const graphDeselected = dc.boxPlot(id);
+        const variable = Entry.Questions[0].variable;
+        const dim = Entry.ndx.dimension(d => '');
         const group = dim.group().reduce(
             (p, v) => {
-
-                    return (p.push(v[Entry.Questions[0].variable]), p);
-
+                const dv = v[variable];
+                if (dv !== Infinity && dv != null && dv > 0) { p.splice(d3.bisectLeft(p, dv), 0, dv); }
+                return p;
             },
             (p, v) => {
                 // Retrieve the data value, if not Infinity or null remove it.
-                // if (v[Entry.Questions[0].variable] > 0) {
-                    let dv = v[Entry.Questions[0].variable];
-                    if (dv != Infinity && dv != null) {
-                        p.splice(p.indexOf(dv), 1);
-                    }
-                // }
+                const dv = v[variable];
+                if (dv !== Infinity && dv != null && dv > 0) {
+                    p.splice(p.indexOf(dv), 1);
+                }
                 return p;
             },
             () => []
         );
+
+        const dimDeselected = Object.assign({}, dim);
+        const groupeDeselected = Object.assign([], group);
 
         const width = 45;
         const height = 75;
@@ -42,16 +45,48 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
             .height(height)
             .margins(margins)
             .dimension(dim)
-            .group(group);
+            .group(group)
+            .showOutliers(false);
 
-        graph.yAxis().ticks(4);
-        graph.on('renderlet', (chart) => {
-            chart.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
-            chart.selectAll('text')
-                .attr("text-anchor", "middle")
-                .attr("transform", function (d, i) { return "translate(-15,-12) rotate(-90)" })
+        graphDeselected
+            .width(width)
+            .height(height)
+            .margins(margins)
+            .dimension(dimDeselected)
+            .group(groupeDeselected)
+            .showOutliers(false)
+            .colors('#ccc');
+
+        graph.yAxis().ticks(2);
+        graphDeselected.yAxis().ticks(2);
+
+        graph.on('pretransition', (chart) => {
+            graph.selectAll('rect.box')
+                .append('title')
+                .text((d) => {
+                    return 'Mean: ' + d3.mean(d.value).toFixed(2) + '\n'
+                        + 'Median: ' + d3.median(d.value).toFixed(2) + '\n'
+                        + 'Variance: ' + d3.variance(d.value).toFixed(2) + '\n';
+                });
         });
 
+        graph.on('renderlet', (chart) => {
+            graph.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
+            graph.selectAll('text')
+                .attr('text-anchor', 'middle')
+                .attr('transform', () => 'translate(-15,-12) rotate(-90)');
+        });
+
+        graphDeselected.on('renderlet', (chart) => {
+            graphDeselected.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
+            graphDeselected.selectAll('text')
+                .attr('text-anchor', 'middle')
+                .attr('transform', () => 'translate(-15,-12) rotate(-90)');
+        });
+
+
+
+        graphDeselected.render();
         graph.render();
         return graph;
     }

@@ -17,7 +17,7 @@ export class BalloonChartVisualizationCreator extends VisualizationDrawer {
     const fixedGroup = this.StaticCopyGroup(group);
     const graph = d3.select("#" + id);
 
-    const visualization = new BalloonChart( Entry.group);
+    const visualization = new BalloonChart(this.notificationService_, Entry.group);
     visualization.Dimension(dimension)
       .Graph(graph)
       .Group(group)

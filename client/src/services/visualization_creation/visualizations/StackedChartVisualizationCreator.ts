@@ -38,8 +38,8 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
 
     const graph = dc.barChart(id);
     const width = 200;
-    const height = 200;
-    const margins = { left: 40, right: 0, top: 50, bottom: 20 };
+    const height = 300;
+    const margins = { left: 40, right: 0, top: 110, bottom: 20 };
     let start = 0;
     for (const [key, value] of Object.entries(options)) {
       if (start === 0) {
@@ -72,6 +72,7 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
         notificationService.emit(Entry.group);
       });
     });
+    graph.legend(dc.legend());
     graph.render();
     return graph;
   }

@@ -19,7 +19,7 @@ export class ParalleleChartVisualizationCreator extends VisualizationDrawer {
         const pcpDim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
         const graph = document.getElementById(id);
 
-        const visualization = new ParallelCoordinates(Entry.group);
+        const visualization = new ParallelCoordinates(this.notificationService_, Entry.group);
         visualization.Dimension(pcpDim)
             .AllDimensions(dims)
             .Graph(graph)

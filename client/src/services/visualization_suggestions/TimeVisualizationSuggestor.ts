@@ -11,7 +11,7 @@ export class TimeVisualizationSuggestor extends VisualizationSuggestor {
     public Suggest(): Visualization {
         const selectedQuestion = this.Entry.Questions[0];
         const questionnaire: any = allData;
-        const category = questionnaire.filter(q => q.variable === selectedQuestion).pop().category;
+        const category = questionnaire.filter(q => q.question === selectedQuestion).pop().category;
         switch (category) {
             case Category.MultipleChoices: {
                 return Visualization.StackedChart;

@@ -21,7 +21,7 @@ export class VisualisationSuggestionValidator implements IValidator {
         const validationResults = [];
         const Questionnaire: any = allData;
         this.questions.forEach(question => {
-            if (Questionnaire.some(item => item.variable === question)) {
+            if (Questionnaire.some(item => item.question === question)) {
                 validationResults.push(new ValidationResult(ValidationStatus.Passed));
             } else {
                 validationResults.push(new ValidationResult(ValidationStatus.Failed, question + ' does not exist.'));

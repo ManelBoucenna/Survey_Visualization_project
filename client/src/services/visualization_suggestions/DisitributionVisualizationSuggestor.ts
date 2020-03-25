@@ -12,7 +12,7 @@ export class DistributionVisualizationSuggestor extends VisualizationSuggestor {
     public Suggest(): Visualization {
         const selectedQuestion = this.Entry.Questions[0];
         const Questionnaire: any = allData;
-        const category = Questionnaire.filter(q => q.variable === selectedQuestion).pop().category;
+        const category = Questionnaire.filter(q => q.question === selectedQuestion).pop().category;
         switch (category) {
             case Category.MultipleChoices: {
                 return Visualization.DetailledBarChart;
@@ -21,7 +21,7 @@ export class DistributionVisualizationSuggestor extends VisualizationSuggestor {
                 return Visualization.BarBoxChart;
             }
             case Category.Numerical: {
-                return Visualization.ViolinBoxChart;
+                return Visualization.ViolinChart;
             }
             default: {
                 alert('There is an error in question category: ' + category);

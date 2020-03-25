@@ -8,6 +8,7 @@ import { DrawChartService } from 'src/services/draw-chart.service';
 import { DataManagementService } from 'src/services/data-management.service';
 import { GroupCreationService } from './groups-creation';
 import { NotficationService } from 'src/services/notification-service';
+import { DataProvider } from 'src/services/Data_provider.service';
 
 @Injectable(
   {
@@ -21,8 +22,8 @@ export class CardsCreationService {
 
   constructor(
     private drawChartService: DrawChartService,
-    private dataManagementService: DataManagementService,
-    private notficationService: NotficationService) {
+    private notficationService: NotficationService,
+    public dataProvider: DataProvider) {
     this.notficationService.listener.subscribe(
       data => {
         console.log("Group :", data);
@@ -46,7 +47,6 @@ export class CardsCreationService {
   }
 
   public moveCard(event: CdkDragDrop<any[]>) {
-    console.log(this.container);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -87,8 +87,8 @@ export class CardsCreationService {
 
 
   public UpdateGroupVizs(group: any) {
-    const NewNdx = this.dataManagementService.getNdx(this.drawChartService.data);
-    let groupId = Guid.raw();
+    const NewNdx = this.dataProvider.getNewNdx();
+    const groupId = Guid.raw();
     group.forEach(elem => {
       const observer = new MutationObserver((mutations, me) => {
         const canvas = document.getElementById(elem.Id.Value);

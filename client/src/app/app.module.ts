@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 //Components
 import { AppComponent } from './app.component';
@@ -28,6 +28,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 import { NotficationService } from 'src/services/notification-service';
+import { DataProvider } from './../services/Data_provider.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,8 +63,16 @@ import { NotficationService } from 'src/services/notification-service';
     ScrollingModule
 
   ],
-  providers: [NotficationService],
+  providers: [
+    NotficationService,
+    DataProvider,
+    { provide: APP_INITIALIZER, useFactory: DataProviderFactory, deps: [DataProvider], multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [CardVizComponent]
 })
 export class AppModule { }
+
+export function DataProviderFactory(provider: DataProvider) {
+  return () => provider.load();
+}

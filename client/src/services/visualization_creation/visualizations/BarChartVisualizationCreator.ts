@@ -6,13 +6,12 @@ import * as dc from 'dc';
 
 export class BarChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): any {
-    console.log("Bar chart")
+    console.log('Bar chart');
 
     const Entry = this.Entries;
     const id = Entry.id;
-    const graph = dc.compositeChart("#" + id.Value);
-
-    //C rossfilter dimension and group setup
+    const graph = dc.compositeChart('#' + id.Value);
+    // Crossfilter dimension and group setups
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
     const group = dim.group().reduceCount();
 
@@ -21,7 +20,7 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
 
     const staticGroup = super.StaticCopyGroup(group);
     const margin = { left: 5, right: 5, top: 5, bottom: 5 };
-    const size = [80, 50, margin];
+    const size = [90, 50, margin];
 
 
     graph.compose([
@@ -49,18 +48,16 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
       .ordering((d) => -d.value)
       .x(d3.scaleBand())
       .xUnits(dc.units.ordinal)
-      .brushOn(true)
+      .brushOn(true);
 
 
-    graph.y(d3.scaleLinear().domain([0, max]))
+    graph.y(d3.scaleLinear().domain([0, max]));
     graph.renderHorizontalGridLines(true);
 
     graph.xAxis().tickValues([]);
     graph.yAxis().tickValues([middle]);
     graph.render();
 
-
-    //console.log(graph)
     return graph;
   }
 

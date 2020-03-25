@@ -48,24 +48,16 @@ export class ParallelCoordinates {
             line: {
                 showscale: true,
                 reversescale: true,
-                colorscale: 'Greys',
-            },
-
-            dimensions: this.getCategories(ParallelCoordinates._Data)
-        },
-        {
-            type: 'parcoords',
-            line: {
-                showscale: true,
-                reversescale: true,
                 colorscale: 'Jet',
+                cmin: -4000,
+                cmax: -100
             },
 
             dimensions: this.getCategories(ParallelCoordinates._Data)
         }
         ];
 
-        var layout = { width: 400 };
+        var layout = {};
         Plotly.react(ParallelCoordinates._graph, data, layout, { displayModeBar: false });
 
         ParallelCoordinates._graph.on('plotly_restyle', this.update_dimensions);
@@ -73,8 +65,8 @@ export class ParallelCoordinates {
     }
 
     redraw() {
-        ParallelCoordinates._Data = ParallelCoordinates._dimension.top(Infinity);
-        // Plotly.restyle(ParallelCoordinates._graph, { 'dimensions': this.getCategories(ParallelCoordinates._Data) }, 1);
+        //ParallelCoordinates._Data = ParallelCoordinates._dimension.top(Infinity);
+        //Plotly.restyle(ParallelCoordinates._graph, { 'dimensions': this.getCategories(ParallelCoordinates._Data) }, 1);
         // ParallelCoordinates._graph.on('plotly_restyle', this.update_dimensions);
 
         return this;
@@ -110,6 +102,8 @@ export class ParallelCoordinates {
         }]},
         [0]
         ] */
+
+        console.log(e)
         if (Object.keys(e[0])[0] === "dimensions") {
             e[0]['dimensions'].forEach((element, index) => {
                 var temp = element['values']
@@ -127,14 +121,23 @@ export class ParallelCoordinates {
                 const ranges = Object.values(filter)[0][0];
                 ParallelCoordinates.filters[index] = ranges;
                 ParallelCoordinates._dimensions[index].filterRange(ranges);
-            } else {
-                ParallelCoordinates.filters[index] = null;
-                ParallelCoordinates._dimensions[index].filterAll();
-            }
-            ParallelCoordinates.notificationService_.emit(ParallelCoordinates._GroupId);
-            return this;
+                // ParallelCoordinates._dimension[index].filterFunction(elem => {
+                //     let filter = null;
+                //     ranges.map(range => {
+                //         console.log(range)
+                //         if (filter == null) { filter = (elem > range[0] && elem < range[1]) }
+                //         else { filter = filter || (elem > range[0] && elem < range[1]) }
+                //     });
+                //     return filter;
+                // });
+        } else {
+            ParallelCoordinates.filters[index] = null;
+            ParallelCoordinates._dimensions[index].filterAll();
         }
-
+        ParallelCoordinates.notificationService_.emit(ParallelCoordinates._GroupId);
+        return this;
     }
+
+}
 
 }

@@ -13,13 +13,17 @@ import { BalloonChartVisualizationCreator } from './visualizations/BalloonChartV
 import { ViolinChartVisualizationCreator } from './visualizations/ViolinChartVisualizationCreator';
 import { ViolinBoxChartVisualizationCreator } from './visualizations/ViolinBoxChartVisualizationCreator';
 import { StackedChartVisualizationCreator } from './visualizations/StackedChartVisualizationCreator';
-import {SankeyChartVisualizationCreator} from './visualizations/SankeyChartVisualizationCreator';
+import { SankeyChartVisualizationCreator } from './visualizations/SankeyChartVisualizationCreator';
 import { NotficationService } from 'src/services/notification-service';
+import { CountriesChartVisualizationCreator } from './visualizations/CountriesChartVisualizationCreator';
 
 
 export class VisualizationDrawerFactory {
 
-    public static Create(visualization: Visualization, creationEntry: CreationEntry, notficationService: NotficationService): VisualizationDrawer {
+    public static Create(
+        visualization: Visualization,
+        creationEntry: CreationEntry,
+        notficationService: NotficationService): VisualizationDrawer {
         switch (visualization) {
             case Visualization.BarChart: return new BarChartVisualizationCreator(creationEntry, notficationService);
             case Visualization.DetailledBarChart: return new DetailledBarChartVisualizationCreator(creationEntry, notficationService);
@@ -33,6 +37,8 @@ export class VisualizationDrawerFactory {
             case Visualization.ViolinBoxChart: return new ViolinBoxChartVisualizationCreator(creationEntry, notficationService);
             case Visualization.StackedChart: return new StackedChartVisualizationCreator(creationEntry, notficationService);
             case Visualization.SankeyChart: return new SankeyChartVisualizationCreator(creationEntry, notficationService);
+            case Visualization.Lollipop: return new CountriesChartVisualizationCreator(creationEntry, notficationService);
+
             default: return null;
         }
     }

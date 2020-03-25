@@ -2,8 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
+import { DataProvider } from 'src/services/Data_provider.service';
 // Data files
-import { CreationEntry, Id } from 'src/helpers/types';
+import { Question, CreationEntry, Id } from 'src/helpers/types';
 
 
 @Component({
@@ -15,19 +16,31 @@ import { CreationEntry, Id } from 'src/helpers/types';
 export class MetaviewComponent implements OnInit {
   metadata: any;
   opened: boolean;
+  Data: any;
 
-  constructor(public drawChartService: DrawChartService) {
-    this.metadata = this.drawChartService.metadata;
+  constructor(
+    public drawChartService: DrawChartService,
+    public dataProvider: DataProvider) {
+    this.Data = dataProvider.getData();
+    this.metadata = this.Data.metadata;
   }
 
   ngOnInit() {
-    this.drawChartService.dataManagement.getData().then(data => {
-      this.drawChartService.data = data;
-      // this.drawChartService.ndxOverviewMetadata = this.drawChartService.ndxOverviewMetadata;
-      this.drawChartService.metadata.forEach(question => {
-        const id = Id.New('metaview_' + question.variable, false);
-        const creationEntry = new CreationEntry(id, [question], true, this.drawChartService.ndxOverviewMetadata);
-        this.drawChartService.DrawVisualizationOverview(creationEntry);
+    this.metadata.forEach(question => {
+      const id = Id.New('metaview_' + question.variable, false);
+      const questions: Question[] = [question];
+      const creationEntry = new CreationEntry(id, questions, true, this.Data.ndx);
+      const observer = new MutationObserver((mutations, me) => {
+        const canvas = document.getElementById(id.Value);
+        if (canvas) {
+          this.drawChartService.DrawVisualizationOverview(creationEntry);
+          me.disconnect(); // stop observing
+          return;
+        }
+      });
+      observer.observe(document, {
+        childList: true,
+        subtree: true
       });
     });
   }

@@ -11,7 +11,9 @@
       <div id="metadata-container">
     <div id="metadata-viz-container">
       <div *ngFor="let question of metadata" class="viz-container" id="{{'metadata_' + question.variable}}">
-        <p class="var_name">{{question.variable}}</p>
+        <p class="var_name"
+          matTooltip= {{question.question}}
+          aria-label="Button that displays a tooltip when focused or hovered over">{{question.variable}}</p>
         <div width="max-content" id='{{"metaview_"+question.variable}}' class="figure"></div>
       </div>
     </div>

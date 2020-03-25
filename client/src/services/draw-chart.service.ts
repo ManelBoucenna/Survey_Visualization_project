@@ -12,6 +12,7 @@ import { DataManagementService } from './data-management.service';
 import { VisualizationDrawerFactory } from './visualization_creation/VisualizationCreatorFactory';
 
 import { NotficationService } from 'src/services/notification-service';
+import { DataProvider } from 'src/services/Data_provider.service';
 
 
 @Injectable({
@@ -19,21 +20,21 @@ import { NotficationService } from 'src/services/notification-service';
 })
 export class DrawChartService {
 
-  questionnaire: any;
-  metadata: any;
-  data: any;
-  public ndxOverviewMetadata: any;
+  // questionnaire: any;
+  // metadata: any;
+  // data: any;
+  // public ndxOverviewMetadata: any;
 
   constructor(
     private notficationService: NotficationService,
-    public dataManagement: DataManagementService) {
-    this.questionnaire = dataManagement.getQuestionnaire();
-    this.metadata = dataManagement.getMetaData();
+    // public dataManagement: DataManagementService,
+    public dataProvider: DataProvider) {
   }
 
 
+
   public ResetFiltersOverview(): boolean {
-    this.ndxOverviewMetadata.remove();
+    // this.ndxOverviewMetadata.remove();
     return true;
   }
   /*
@@ -48,6 +49,8 @@ export class DrawChartService {
       return VisualizationDrawerFactory.Create(Visualization.BarChart, creationEntries, this.notficationService).Draw();
     } else if (creationEntries.Questions[0].category === 'Numerical') {
       return VisualizationDrawerFactory.Create(Visualization.LineChart, creationEntries, this.notficationService).Draw();
+    } else if (creationEntries.Questions[0].category === 'Country') {
+      return VisualizationDrawerFactory.Create(Visualization.Lollipop, creationEntries, this.notficationService).Draw();
     } else {
       return VisualizationDrawerFactory.Create(Visualization.BoxChart, creationEntries, this.notficationService).Draw();
     }
@@ -75,13 +78,12 @@ export class DrawChartService {
   public GetCreationEntries(id: Id, questions: string[]): CreationEntry {
     const questionEntries: Question[] = [];
     const Overview = false;
-    const ndx = this.dataManagement.getNdx(this.data);
+    const ndx = this.dataProvider.getNewNdx();
     const DataPlusMeta: any = allData;
     questions.forEach(element => {
-      questionEntries.push(DataPlusMeta.filter(q => q.variable === element)[0]);
+      questionEntries.push(DataPlusMeta.filter(q => q.question === element)[0]);
     });
     const creationEntries: CreationEntry = new CreationEntry(id, questionEntries, Overview, ndx);
-
     return creationEntries;
   }
 }
