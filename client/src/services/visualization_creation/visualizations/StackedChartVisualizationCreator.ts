@@ -65,8 +65,8 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
 
     graph.on('renderlet', function (chart) {
       graph.selectAll('g.x g.tick text')
-        .attr('transform', 'translate(-10,0) rotate(40)')
-        .style('text-anchor', 'middle');
+        .attr('transform', 'translate(0,0) rotate(40)')
+        .style('text-anchor', 'start');
 
       chart.selectAll('rect.bar').on('dblclick', function (d) {
         dim.filter(elem => (elem[0] === d.x && elem[1] === d.layer));
