@@ -39,7 +39,7 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
     const graph = dc.barChart(id);
     const width = 300;
     const height = 300;
-    const margins = { left: 40, right: 0, top: 110, bottom: 20 };
+    const margins = { left: 40, right: 0, top: 130, bottom: 40 };
     let start = 0;
     for (const [key, value] of Object.entries(options)) {
       if (start === 0) {
@@ -61,9 +61,13 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
     }
 
     graph.yAxis().ticks(3).tickFormat(d => String(d));
-    graph.y(d3.scaleLinear().domain([0, 50000]));
+    graph.y(d3.scaleLinear().domain([0, 10000]));
 
     graph.on('renderlet', function (chart) {
+      graph.selectAll('g.x g.tick text')
+        .attr('transform', 'translate(-10,0) rotate(40)')
+        .style('text-anchor', 'middle');
+
       chart.selectAll('rect.bar').on('dblclick', function (d) {
         dim.filter(elem => (elem[0] === d.x && elem[1] === d.layer));
         notificationService.emit(Entry.group);
