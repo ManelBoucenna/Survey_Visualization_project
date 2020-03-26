@@ -56,7 +56,7 @@ export class CountriesChartVisualizationCreator extends VisualizationDrawer {
     });
 
     // graph.xAxis().tickValues([]);
-    graph.y(d3.scaleLinear())//.domain([0, max]));
+    graph.y(d3.scaleLinear().domain([0, max * 3 / 4]));
     graph.yAxis().tickValues([(max / 2).toFixed(0)]);
 
     graph.render();

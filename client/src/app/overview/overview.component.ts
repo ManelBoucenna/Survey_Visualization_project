@@ -62,7 +62,7 @@ export class OverviewComponent implements OnInit {
     return this.questionnaire.filter(question => question.question.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  private submit(value: string) {
+  public submit(value: string) {
 
     const container = document.getElementById('container_' + value);
     container.classList.add('found-highlight');

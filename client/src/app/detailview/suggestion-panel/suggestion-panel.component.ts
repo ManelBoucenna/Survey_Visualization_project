@@ -11,7 +11,7 @@ import { Guid } from 'guid-typescript';
 // Data files
 import { Task, ValidationStatus } from 'src/helpers/enums';
 import { CreationEntry, CardEntry, Id } from 'src/helpers/types';
-
+ 
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
 import { SuggestChartService } from 'src/services/suggest-chart.service';
@@ -29,7 +29,7 @@ import { DataProvider } from 'src/services/Data_provider.service';
 export class SuggestionPanelComponent implements OnInit {
 
   // Variables to save user choice
-  selectedTask: string;
+  selectedTask: Task;
   filteredQuestions: Observable<string[]>;
   selectedQuestions: string[] = [];
   IdQuestions: string[];
