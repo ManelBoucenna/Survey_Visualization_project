@@ -8,7 +8,6 @@ import { Visualization } from '../helpers/enums';
 import { allData } from 'src/assets/data/allData';
 
 // Services
-import { DataManagementService } from './data-management.service';
 import { VisualizationDrawerFactory } from './visualization_creation/VisualizationCreatorFactory';
 
 import { NotficationService } from 'src/services/notification-service';
@@ -20,23 +19,25 @@ import { DataProvider } from 'src/services/Data_provider.service';
 })
 export class DrawChartService {
 
-  // questionnaire: any;
-  // metadata: any;
-  // data: any;
-  // public ndxOverviewMetadata: any;
-
+  allOverviewCharts: any[] = []
   constructor(
     private notficationService: NotficationService,
-    // public dataManagement: DataManagementService,
     public dataProvider: DataProvider) {
   }
 
-
-
-  public ResetFiltersOverview(): boolean {
-    // this.ndxOverviewMetadata.remove();
-    return true;
+  RedrawVisualizations() {
+    this.allOverviewCharts.forEach(element => {
+      element.dim.filterAll();
+      element.graph.filter(null);
+      element.graph.redraw();
+    });
+    this.allOverviewCharts.forEach(element => {
+      element.dim.filterAll();
+      element.graph.filter(null);
+      element.graph.redraw();
+    });
   }
+
   /*
   * @method DrawVisualizationOverview: Suggest visualization for Overview part
                                        based on type of question. We draw one question
@@ -45,15 +46,18 @@ export class DrawChartService {
   * @return {boolean}: true when done
 */
   public DrawVisualizationOverview(creationEntries: CreationEntry): boolean {
+    let chart = null;
     if (creationEntries.Questions[0].category === 'Multiple choices') {
-      return VisualizationDrawerFactory.Create(Visualization.BarChart, creationEntries, this.notficationService).Draw();
+      chart = VisualizationDrawerFactory.Create(Visualization.BarChart, creationEntries, this.notficationService).Draw();
     } else if (creationEntries.Questions[0].category === 'Numerical') {
-      return VisualizationDrawerFactory.Create(Visualization.LineChart, creationEntries, this.notficationService).Draw();
+      chart = VisualizationDrawerFactory.Create(Visualization.LineChart, creationEntries, this.notficationService).Draw();
     } else if (creationEntries.Questions[0].category === 'Country') {
-      return VisualizationDrawerFactory.Create(Visualization.Lollipop, creationEntries, this.notficationService).Draw();
+      chart = VisualizationDrawerFactory.Create(Visualization.Lollipop, creationEntries, this.notficationService).Draw();
     } else {
-      return VisualizationDrawerFactory.Create(Visualization.BoxChart, creationEntries, this.notficationService).Draw();
+      chart = VisualizationDrawerFactory.Create(Visualization.BoxChart, creationEntries, this.notficationService).Draw();
     }
+    this.allOverviewCharts.push(chart);
+    return chart.graph;
   }
 
   /*

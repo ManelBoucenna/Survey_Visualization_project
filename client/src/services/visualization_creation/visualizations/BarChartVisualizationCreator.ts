@@ -6,6 +6,7 @@ import * as dc from 'dc';
 
 export class BarChartVisualizationCreator extends VisualizationDrawer {
   public Draw(): any {
+
     console.log('Bar chart');
 
     const Entry = this.Entries;
@@ -13,6 +14,7 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
     const graph = dc.compositeChart('#' + id.Value);
     // Crossfilter dimension and group setups
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
+    const dimReset =  Entry.ndx.dimension(d => '');
     const group = dim.group().reduceCount();
 
     const max = dim.top(Infinity).length;
@@ -58,7 +60,10 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
     graph.yAxis().tickValues([middle]);
     graph.render();
 
-    return graph;
+    return {
+      'graph': graph,
+      'dim': dimReset
+    }
   }
 
 }

@@ -13,12 +13,13 @@ export class CountriesChartVisualizationCreator extends VisualizationDrawer {
     const graph = dc.compositeChart('#' + id);
 
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
+    const dimReset =  Entry.ndx.dimension(d => '');
 
     const max = dim.top(Infinity).length;
     const group = dim.group().reduceCount();
     const staticGroup = super.StaticCopyGroup(group);
-    const margin = { left: 45, right: 5, top: 5, bottom: 15 };
-    const size = [800, 100, margin];
+    const margin = { left: 40, right: 50, top: 10, bottom: 30 };
+    const size = [1000, 90, margin];
 
     graph.compose([
       dc.barChart(graph)
@@ -60,6 +61,9 @@ export class CountriesChartVisualizationCreator extends VisualizationDrawer {
     graph.yAxis().tickValues([(max / 2).toFixed(0)]);
 
     graph.render();
-    return graph;
+    return {
+      'graph': graph,
+      'dim': dimReset
+    }
   }
 }

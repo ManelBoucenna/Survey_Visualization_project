@@ -30,5 +30,5 @@ export class DragndropPanelComponent implements OnInit {
     this.cardsCreationService.createGroup();
   }
 }
-
+ 
 

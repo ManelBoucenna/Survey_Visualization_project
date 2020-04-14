@@ -1,13 +1,18 @@
     <form class="form-inline">
       <p>I want to visualize the </p>
-      <mat-form-field>
-        <mat-label>Task</mat-label>
+      <!-- <mat-form-field> -->
+        <mat-radio-group id="group-task" aria-label="Select a task" [(ngModel)]="selectedTask" name="tasks">
+          <mat-radio-button *ngFor="let task of tasks| keyvalue" [value]="task" color="primary">
+            {{task.value}}</mat-radio-button><br>
+        </mat-radio-group>
+        
+        <!-- <mat-label>Task</mat-label>
         <mat-select [(ngModel)]="selectedTask" name="tasks">
           <mat-option *ngFor="let task of tasks| keyvalue" [value]="task">
             {{task.value}}
           </mat-option>
-        </mat-select>
-      </mat-form-field>
+        </mat-select> -->
+      <!-- </mat-form-field> -->
       <p> of </p>
       <mat-form-field class="example-chip-list">
         <mat-chip-list #chipList aria-label="Question selection">
@@ -16,7 +21,7 @@
             {{question}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="New Question..." #questionInput [formControl]="IdCtrl" [matAutocomplete]="auto"
+          <input placeholder="Variables ..." #questionInput [formControl]="IdCtrl" [matAutocomplete]="auto"
             [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
             (keyup.enter)="AddNode(selectedQuestions, selectedTask)">

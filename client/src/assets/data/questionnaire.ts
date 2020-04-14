@@ -65,6 +65,20 @@ export const questionnaire = [
             9: 'MISSING'
         },
         answers: ['WIDOWED', 'DIVORCED OR SEPARATED']
+    }, {
+        id: 47,
+        variable: 'IMD2007',
+        question: 'Rural or Urban residence',
+        category: 'Multiple choices',
+        Options: {
+            1: 'Rural area or village',
+            2: 'Small r middle-sized town',
+            3: 'Suburbs of large town or city',
+            4: 'Large town or city',
+            7: 'Refused',
+            8: 'Don\'t know',
+            9: 'Missing'
+        }
     },
     {
         id: 5,
@@ -275,6 +289,197 @@ export const questionnaire = [
             98: -3,
             99: -4
         }
+    }, {
+        id: 41,
+        variable: 'IMD3007_B',
+        question: 'LEFT-RIGHT-PARTY B',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_C',
+        question: 'LEFT-RIGHT-PARTY C',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_D',
+        question: 'LEFT-RIGHT-PARTY D',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_E',
+        question: 'LEFT-RIGHT-PARTY E',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_F',
+        question: 'LEFT-RIGHT-PARTY F',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_G',
+        question: 'LEFT-RIGHT-PARTY G',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_H',
+        question: 'LEFT-RIGHT-PARTY H',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 41,
+        variable: 'IMD3007_I',
+        question: 'LEFT-RIGHT-PARTY I',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            95: 0,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
     },
     {
         id: 42,
@@ -300,9 +505,371 @@ export const questionnaire = [
         }
     },
     {
+        id: 42,
+        variable: 'IMD3008_B',
+        question: 'LIKE-DISLIKE-PARTY B',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 42,
+        variable: 'IMD3008_C',
+        question: 'LIKE-DISLIKE-PARTY C',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    }, {
+        id: 42,
+        variable: 'IMD3008_D',
+        question: 'LIKE-DISLIKE-PARTY D',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    }, {
+        id: 42,
+        variable: 'IMD3008_E',
+        question: 'LIKE-DISLIKE-PARTY E',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    }, {
+        id: 42,
+        variable: 'IMD3008_F',
+        question: 'LIKE-DISLIKE-PARTY F',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    }, {
+        id: 42,
+        variable: 'IMD3008_G',
+        question: 'LIKE-DISLIKE-PARTY G',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    }, {
+        id: 42,
+        variable: 'IMD3008_H',
+        question: 'LIKE-DISLIKE-PARTY H',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    }, {
+        id: 42,
+        variable: 'IMD3008_I',
+        question: 'LIKE-DISLIKE-PARTY I',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
         id: 43,
         variable: 'IMD3009_A',
         question: 'LIKE-DISLIKE-LEADER A',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_B',
+        question: 'LIKE-DISLIKE-LEADER B',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_C',
+        question: 'LIKE-DISLIKE-LEADER C',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_D',
+        question: 'LIKE-DISLIKE-LEADER D',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_E',
+        question: 'LIKE-DISLIKE-LEADER E',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_F',
+        question: 'LIKE-DISLIKE-LEADER F',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_G',
+        question: 'LIKE-DISLIKE-LEADER G',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_H',
+        question: 'LIKE-DISLIKE-LEADER H',
+        category: 'Rating scale',
+        Options: {
+            0: 1,
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6,
+            6: 7,
+            7: 8,
+            8: 9,
+            9: 10,
+            10: 11,
+            96: -1,
+            97: -2,
+            98: -3,
+            99: -4
+        }
+    },
+    {
+        id: 43,
+        variable: 'IMD3009_I',
+        question: 'LIKE-DISLIKE-LEADER I',
         category: 'Rating scale',
         Options: {
             0: 1,
@@ -369,19 +936,61 @@ export const questionnaire = [
             8: -2,
             9: -3
         }
-    }, {
-        id: 47,
-        variable: 'IMD2007',
-        question: 'Rural or Urban residence',
+    }, 
+    {
+        id: 46,
+        variable: 'IMD3013_1',
+        question: 'STATE OF ECONOMY (OVER PAST 12 MONTHS)',
+        category: 'Rating scale',
+        Options: {
+            5: 1,
+            3: 2,
+            1: 3,
+            7: -1,
+            8: -2,
+            9: -3
+        }
+    },
+    {
+        id: 46,
+        variable: 'IMD3013_2',
+        question: 'STATE OF ECONOMY - BETTER',
         category: 'Multiple choices',
         Options: {
-            1: 'Rural area or village',
-            2: 'Small r middle-sized town',
-            3: 'Suburbs of large town or city',
-            4: 'Large town or city',
+            2: 'Somewhat better',
+            1: 'Much better',
             7: 'Refused',
-            8: 'Don\'t know',
+            8: 'Don"t know',
             9: 'Missing'
+        }
+    },
+    {
+        id: 46,
+        variable: 'IMD3013_3',
+        question: 'STATE OF ECONOMY-Worse',
+        category: 'Multiple choices',
+        Options: {
+            2: 'Somewhat worse',
+            1: 'Much worse',
+            7: 'Refused',
+            8: 'Don"t know',
+            9: 'Missing'
+        }
+    },
+    {
+        id: 46,
+        variable: 'IMD3014',
+        question: 'GOVERNMENT PERFORMANCE: GENERAL',
+        category: 'Rating scale',
+        Options: {
+            4: 1,
+            3: 2,
+            2: 3,
+            1: 4,
+            6: -1,
+            7: -2,
+            8: -3,
+            9: -4
         }
     }
 ];

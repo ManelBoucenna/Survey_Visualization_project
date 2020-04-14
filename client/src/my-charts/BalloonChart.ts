@@ -60,7 +60,8 @@ export class BalloonChart {
 
     draw() {
         BalloonChart._graph.html('');
-        let svg = BalloonChart._graph.append('svg').attr('width', '400')
+        let svg = BalloonChart._graph.append('svg')
+            .attr('width', '400')
             .attr('height', '400')
             .attr('class', 'background-style');
         let margin = { top: 10, right: 10, bottom: 50, left: 50 };
@@ -105,26 +106,6 @@ export class BalloonChart {
             .attr('transform', 'translate(-10, 0) rotate(45)')
             .attr('text-anchor', 'start');
         d3.selectAll('.axis text').style('font-size', '8px');
-
-        // d3.selectAll('.axis--y text')
-        //.each(d => {
-        //     if (d !== undefined) {
-        //         const textArr = d.split(' ');
-        //         d3.select(this).text(d => {
-        //             let text = "";
-        //             textArr.forEach(elem =>
-        //                 text+=elem+'<br>'))
-        //     }
-        //     console.log(textArr);
-        // }
-
-        // }
-        // )
-        // .attr('transform', 'translate(-10, 0) rotate(-90)')
-        // .attr('text-anchor', 'middle');
-
-
-
         //GRIDS
         g.append('g')
             .attr('class', 'grid')
@@ -151,8 +132,15 @@ export class BalloonChart {
 
         // Define the div for the tooltip
         var div = d3.select('body').append('div')
-            .attr('class', 'tooltip-donut')
-            .style('opacity', 0);
+            .style('opacity', 0)
+            .style('padding', '2px')
+            .style('position', 'absolute')
+            .style('text-align', 'center')
+            .style('background', 'lightsteelblue')
+            .style('border-radius', '3px')
+            .style('pointer-events', 'none')
+
+
 
         g.selectAll('.bubble1')
             .data(BalloonChart._fixedGroup.all())
@@ -164,7 +152,7 @@ export class BalloonChart {
             // .attr('cy', function (d) { return y(d.key[1]); })
             // .attr('r', d => 30 * (d.value - min) / (max - min))
             .attr('x', (d) => x(d.key[0]))
-            .attr('y', (d) => y(d.key[1]))
+            .attr('y', (d) => y(d.key[1]) - 30 * (d.value - min) / (max - min))
             .attr('width', d => 30 * (d.value - min) / (max - min))
             .attr('height', d => 30 * (d.value - min) / (max - min))
             .style('fill', 'grey')
@@ -175,32 +163,22 @@ export class BalloonChart {
             .selectAll('.bubble2')
             .data(BalloonChart._group.all())
             .enter()
-            //.append('circle')
             .append('rect')
             .attr('class', 'bubbleBlue bubble')
-            // .attr('cx', function (d) { return x(d.key[0]); })
-            // .attr('cy', function (d) { return y(d.key[1]); })
-            // .attr('r', d => 30 * (d.value - min) / (max - min))
             .attr('x', (d) => x(d.key[0]))
-            .attr('y', (d) => y(d.key[1]))
+            .attr('y', (d) => y(d.key[1]) - 30 * (d.value - min) / (max - min))
             .attr('width', d => 30 * (d.value - min) / (max - min))
             .attr('height', d => 30 * (d.value - min) / (max - min))
             .style('fill', '#1f77b4')
             .on('mouseover', function (d, i) {
-                d3.select(this).transition()
-                    .duration('50')
-                    .attr('opacity', '.5');          //Makes the new div appear on hover:
                 div.transition()
                     .duration(50)
                     .style('opacity', 1);
-                div.html(d.value)
-                    .style('left', (d3.event.pageX + 10) + 'px')
-                    .style('top', (d3.event.pageY - 15) + 'px');
+                div.html(d.key[0] + '/' + d.key[1] + ':' + d.value)
+                    .style('left', (d3.event.pageX) + 'px')
+                    .style('top', (d3.event.pageY) + 'px');
             })
             .on('mouseout', function (d, i) {
-                d3.select(this).transition()
-                    .duration('50')
-                    .attr('opacity', '1');        //Makes the new div disappear:
                 div.transition()
                     .duration('50')
                     .style('opacity', 0);
@@ -260,26 +238,6 @@ export class BalloonChart {
     redraw() {
         console.log('Redraw Balloon')
         this.render();
-        //  console.log('Group After', BalloonChart._group.all());
-        // console.log(BalloonChart.balloonChart)
-        // BalloonChart.balloonChart.selectAll('.bubble2').selectAll("circle.bubbleBlue.bubble")
-        // .data(BalloonChart._group.all())
-        // .enter()
-        // .attr('r', d => 35 * (d.value - BalloonChart.min) / (BalloonChart.max - BalloonChart.min))
-
-        // d3.selectAll('circle.bubbleBlue').remove();
-        // d3.selectAll('BalloonChart-' + BalloonChart._GroupId)
-        //     .selectAll('BubbleGroup')
-        //     .selectAll('.bubble2')
-        //     .data(BalloonChart._group.all())
-        //     .enter()
-        //     .append('circle')
-        //     .attr('class', 'bubbleBlue bubble')
-        //     .attr('cx', function (d) { return BalloonChart.x(d.key[0]); })
-        //     .attr('cy', function (d) { return BalloonChart.y(d.key[1]); })
-        //     .attr('r', d => 35 * (d.value - BalloonChart.min) / (BalloonChart.max - BalloonChart.min))
-        //     .style('fill', 'blue')
-
         return null;
     }
 

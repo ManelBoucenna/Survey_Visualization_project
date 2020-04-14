@@ -25,8 +25,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
-
+import {MatRadioModule} from '@angular/material/radio'; 
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import {MatListModule} from '@angular/material/list'; 
+import {MatMenuModule} from '@angular/material/menu';
 import { NotficationService } from 'src/services/notification-service';
 import { DataProvider } from './../services/Data_provider.service';
 
@@ -59,6 +61,11 @@ import { DataProvider } from './../services/Data_provider.service';
     MatSidenavModule,
     MatExpansionModule,
     MatTooltipModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatListModule,
+
+    MatMenuModule,
 
     ScrollingModule
 

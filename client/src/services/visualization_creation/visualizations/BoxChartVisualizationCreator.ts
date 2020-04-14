@@ -13,9 +13,10 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
         const Entry = this.Entries;
         const id = '#' + Entry.id.Value;
         const graph = dc.boxPlot(id);
-        const graphDeselected = dc.boxPlot(id);
+        // const graphDeselected = dc.boxPlot(id);
         const variable = Entry.Questions[0].variable;
         const dim = Entry.ndx.dimension(d => '');
+        const dimReset = Entry.ndx.dimension(d => '');
         const group = dim.group().reduce(
             (p, v) => {
                 const dv = v[variable];
@@ -33,8 +34,8 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
             () => []
         );
 
-        const dimDeselected = Object.assign({}, dim);
-        const groupeDeselected = Object.assign([], group);
+        // const dimDeselected = Object.assign({}, dim);
+        // const groupeDeselected = Object.assign([], group);
 
         const width = 45;
         const height = 75;
@@ -48,17 +49,17 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
             .group(group)
             .showOutliers(false);
 
-        graphDeselected
-            .width(width)
-            .height(height)
-            .margins(margins)
-            .dimension(dimDeselected)
-            .group(groupeDeselected)
-            .showOutliers(false)
-            .colors('#ccc');
+        // graphDeselected
+        //     .width(width)
+        //     .height(height)
+        //     .margins(margins)
+        //     .dimension(dimDeselected)
+        //     .group(groupeDeselected)
+        //     .showOutliers(false)
+        //     .colors('#ccc');
 
         graph.yAxis().ticks(2);
-        graphDeselected.yAxis().ticks(2);
+        // graphDeselected.yAxis().ticks(2);
 
         graph.on('pretransition', (chart) => {
             graph.selectAll('rect.box')
@@ -77,17 +78,20 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
                 .attr('transform', () => 'translate(-15,-12) rotate(-90)');
         });
 
-        graphDeselected.on('renderlet', (chart) => {
-            graphDeselected.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
-            graphDeselected.selectAll('text')
-                .attr('text-anchor', 'middle')
-                .attr('transform', () => 'translate(-15,-12) rotate(-90)');
-        });
+        // graphDeselected.on('renderlet', (chart) => {
+        //     graphDeselected.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
+        //     graphDeselected.selectAll('text')
+        //         .attr('text-anchor', 'middle')
+        //         .attr('transform', () => 'translate(-15,-12) rotate(-90)');
+        // });
 
 
 
-        graphDeselected.render();
+        // graphDeselected.render();
         graph.render();
-        return graph;
+        return {
+            'graph':graph,
+            'dim': dimReset
+        }
     }
 }

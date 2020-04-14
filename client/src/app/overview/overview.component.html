@@ -1,30 +1,24 @@
-<form class="search-form">
-    <mat-form-field class="form-width">
-       <input type="text" 
-              placeholder="QuestionID" 
-              aria-label="QuestionID" 
-              matInput 
-              [formControl]="IdCtrl" 
-              [matAutocomplete]="auto"
-              (keyup.enter)="submit(IdCtrl.value)">
-       <mat-label>Select an ID</mat-label>
-       <mat-autocomplete #auto="matAutocomplete">
-         <mat-option *ngFor="let option of filteredQuestions| async" [value]="option.variable">
-           {{option.question}}
-         </mat-option>
-       </mat-autocomplete>
-     </mat-form-field>
- </form>
- 
- <!-- <button mat-flat-button color="primary" (click)=ResetFilters()>Reset Filters</button> -->
- <div class="container" >
-    <div *ngFor="let question of questionnaire" 
-          class="box-viz"
-          id="{{'container_'+question.variable}}">
-        <p class="var_name" 
-        matTooltip= {{question.question}}
-        aria-label="Button that displays a tooltip when focused or hovered over">{{question.variable}}</p>
-        <div width="max-content" id="{{'overview_' + question.variable}}" class="figure"></div>
-    </div>
-</div> 
- 
+<div class="search-form">
+  <button mat-flat-button [matMenuTriggerFor]="menu" style="width:38%; color:white;background-color:#1f77b4;margin:2px">Filter
+    variables</button>
+  <button mat-flat-button style="width:38%; color:white;background-color:#1f77b4;margin:2px" (click)="ResetFilters()">Reset filters</button>
+  <button mat-flat-button style="width:20%; color:white;background-color:#1f77b4;margin:2px" (click)="OpenData()">Info</button>
+  <mat-menu #menu="matMenu">
+    <mat-selection-list>
+      <mat-checkbox [(ngModel)]="master_checked" (keyup)="UpdateQuestions()" [(indeterminate)]="master_indeterminate"
+        (change)="master_change()" (click)="$event.stopPropagation();" color="primary">All</mat-checkbox><br>
+      <mat-checkbox *ngFor="let item of sortBy('name')" (keyup)="UpdateQuestions()" (change)="list_change()"
+        [(ngModel)]="item.checked" [disabled]="item.disabled" [labelPosition]="item.labelPosition"
+        (click)="$event.stopPropagation();" color="primary">
+        {{item.name}}
+      </mat-checkbox><br>
+    </mat-selection-list>
+  </mat-menu>
+</div>
+
+<div class="container">
+  <div *ngFor="let question of questionnaire" [ngStyle]="{'display': (!IsChecked(question.question)) ? 'none':'flex'}" class="box-viz" id="{{'container_'+question.variable}}">
+      <p class="var_name" matTooltip={{question.question}}>{{question.variable}}</p>
+      <div width="max-content" id="{{'overview_' + question.variable}}" class="figure"></div>
+  </div>
+</div>

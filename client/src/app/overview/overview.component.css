@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     overflow: scroll;
     background-color: #3a74b73b;    
+    align-content: flex-start;
 }
 
 .box-viz {
@@ -16,8 +17,8 @@
     padding: 5px;
     display: flex;
     flex-direction: column;
-    width: 80px;
-/* height: 90px; */
+    min-width: 80px;
+    height: 75px;
     border-radius: 4px;
     background-color: #fafafa;
 }

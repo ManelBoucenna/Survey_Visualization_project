@@ -13,11 +13,11 @@ export class LineChartVisualizationCreator extends VisualizationDrawer {
         const graph = dc.lineChart(id);
         let filter = [];
         // const graph1 = new dc.CompositeChart(id);
-        
+
         // If we have one variable only we draw line chart by Count
         if ((Entry.Questions).length === 1) {
             const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
-            const dimFilter = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
+            const dimFilter = Entry.ndx.dimension(d => '');
 
             const group = dim.group().reduceCount();
             const staticGroup = super.StaticCopyGroup(group);
@@ -25,57 +25,6 @@ export class LineChartVisualizationCreator extends VisualizationDrawer {
             const height = 90;
             const margins = { left: 40, right: 50, top: 10, bottom: 30 };
 
-            // graph1.compose([
-            //     new dc.LineChart(graph1)
-            //         .width(width)
-            //         .height(height)
-            //         .margins(margins)
-            //         .x(d3.scaleLinear().domain([1995, 2021]))
-            //         .y(d3.scaleLinear().domain([0, group.top(1)[0].value + 100]))
-            //         .brushOn(false)
-            //         .renderDataPoints(true)
-            //         .clipPadding(10)
-            //         .dimension(dim)
-            //         .group(group)
-            //         // .colors('#ccc')
-            //         .renderHorizontalGridLines(true),
-            //     // new dc.LineChart(graph1)
-            //     //     .width(width)
-            //     //     .height(height)
-            //     //     .margins(margins)
-            //     //     .x(d3.scaleLinear().domain([1995, 2021]))
-            //     //     .y(d3.scaleLinear().domain([0, group.top(1)[0].value + 100]))
-            //     //     .brushOn(false)
-            //     //     .renderDataPoints(true)
-            //     //     .clipPadding(10)
-            //     //     .dimension(dim)
-            //     //     .group(group)
-            //     //     .renderHorizontalGridLines(true)
-            //     //     .on('renderlet', function (chart) {
-            //     //         graph1.selectAll('circle').on('click', function (d) {
-            //     //             console.log('click!', d);
-            //     //             if (filter.includes(d.x)) {
-            //     //                 filter = filter.filter((value) => value !== d.x);
-            //     //             } else {
-            //     //                 filter.push(d.x);
-            //     //             }
-            //     //             console.log(filter);
-            //     //             dimFilter.filter(z => z === d.x);
-            //     //             // dimFilter.filterFunction(d => {
-            //     //             //     let temp = null;
-            //     //             //     filter.forEach(elem => {
-            //     //             //         if (filter == null) {
-            //     //             //             temp = d === elem;
-            //     //             //         } else {
-            //     //             //             temp = filter || (d === elem);
-            //     //             //         }
-            //     //             //     });
-            //     //             //     return temp;
-            //     //             // });
-            //     //             dc.redrawAll();
-            //     //         });
-            //     //     })
-            // ]).render();
             graph
                 .width(width)
                 .height(height)
@@ -115,7 +64,10 @@ export class LineChartVisualizationCreator extends VisualizationDrawer {
             graph.xAxis().tickFormat(d => String(d));
 
             graph.render();
-            return graph;
+            return {
+                'graph': graph,
+                'dim': dimFilter
+            }
 
         } else {
             console.log(' Draw time line');

@@ -5,12 +5,12 @@ import { HttpClient } from '@angular/common/http';
 import { Config } from './config';
 
 // Visualization libs
-import * as crossfilter from 'crossfilter';
+import * as crossfilter from 'crossfilter2/crossfilter';
 
 @Injectable()
 export class DataProvider {
 
-    private ndxOverview: any = null;
+    private ndxOverview = null;
     private questionnaire: any = null;
     private metadata: any = null;
     private data: any = null;
@@ -39,9 +39,9 @@ export class DataProvider {
         return new Promise((resolve, reject) => {
             this.http
                 .get(url)
-                .subscribe(response => {
+                .subscribe((response: any[]) => {
                     this.data = response;
-                    this.ndxOverview = crossfilter(response);
+                    this.ndxOverview = crossfilter<any>(response);
                     console.log('Data Uploaded.');
                     resolve(true);
                 });

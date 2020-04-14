@@ -16,6 +16,10 @@ mat-form-field{
     margin-right: 5px;
 } 
 
+#group-task{
+    display: grid
+}
+
 .example-chip-list {
     width: 100vh;
   }

@@ -10,12 +10,21 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
     const id = '#' + Entry.id.Value;
     const notificationService = this.notificationService_;
 
-    //dimensions and groups:
+    // Dimensions and groups:
     const variable = Entry.Questions[0].variable;
-    const dim = Entry.ndx.dimension(d => [d['IMD1008_YEAR'], d[variable]]);
+    const dim = Entry.ndx.dimension(d => [d.IMD1008_YEAR, d[variable]]);
     const options = [...new Set(dim.group().all().map(d => d.key[1]))];
 
-    const xdim = Entry.ndx.dimension(d => d['IMD1008_YEAR']);
+    const xdim = Entry.ndx.dimension(d => d.IMD1008_YEAR);
+    const group = xdim.group().reduceCount().all();
+    let max = -Infinity;
+    group.forEach(elem => {
+      if (elem.value > max) {
+        max = elem.value;
+      }
+    });
+    const numGroup = group.length;
+    const numLabels = Entry.ndx.dimension(d => d[variable]).group().reduceCount().all().length;
     const ydim = xdim.group().reduce(
       function (p, v) {
         p[v[variable]] = (p[v[variable]] || 0) + 1;
@@ -37,9 +46,9 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
 
 
     const graph = dc.barChart(id);
-    const width = 300;
+    const width = numGroup * 60;
     const height = 300;
-    const margins = { left: 40, right: 0, top: 130, bottom: 40 };
+    const margins = { left: 40, right: 0, top: 17 * numLabels, bottom: 40 };
     let start = 0;
     for (const [key, value] of Object.entries(options)) {
       if (start === 0) {
@@ -52,7 +61,11 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
           .renderLabel(false)
           .brushOn(false)
           .title(function (d) {
-            return d.key + '+' + this.layer + ': ' + d.value[this.layer];
+            const key = group.find(x => x.key == d.key).value;
+            const percentage = (d.value[this.layer] * 100 / key).toFixed(2);
+            return d.key + ': ' + key + '\n'
+              + this.layer + ': ' + d.value[this.layer] + '\n'
+              + 'Purcentage: ' + percentage + '%';
           });
         start += 1;
       } else {
@@ -61,7 +74,7 @@ export class StackedChartVisualizationCreator extends VisualizationDrawer {
     }
 
     graph.yAxis().ticks(3).tickFormat(d => String(d));
-    graph.y(d3.scaleLinear().domain([0, 10000]));
+    graph.y(d3.scaleLinear().domain([0, max]));
 
     graph.on('renderlet', function (chart) {
       graph.selectAll('g.x g.tick text')
