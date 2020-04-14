@@ -203,20 +203,6 @@ export const questionnaire = [
             9999998: 'VOLUNTEERED: DON\'T KNOW',
             9999999: 'MISSING'
         }
-    },
-    {
-        id: 37,
-        variable: 'IMD3005_4',
-        question: 'PARTY IDENTIFICATION: HOW CLOSE',
-        category: 'Rating scale',
-        Options: {
-            1: '3',
-            2: '2',
-            3: '1',
-            7: 'VOLUNTEERED: REFUSED',
-            8: 'VOLUNTEERED: DON\'T KNOW',
-            9: 'Missing'
-        }
     }, {
         id: 38,
         variable: 'IMD3005_1',
@@ -241,6 +227,33 @@ export const questionnaire = [
             7: 'REFUSED',
             8: 'DON\'T KNOW',
             9: 'MISSING'
+        }
+    },
+    {
+        id: 46,
+        variable: 'IMD3013_3',
+        question: 'STATE OF ECONOMY-Worse',
+        category: 'Multiple choices',
+        Options: {
+            2: 'Somewhat worse',
+            1: 'Much worse',
+            7: 'Refused',
+            8: 'Don"t know',
+            9: 'Missing'
+        }
+    },
+    {
+        id: 37,
+        variable: 'IMD3005_4',
+        question: 'PARTY IDENTIFICATION: HOW CLOSE',
+        category: 'Rating scale',
+        Options: {
+            1: '3',
+            2: '2',
+            3: '1',
+            7: 'VOLUNTEERED: REFUSED',
+            8: 'VOLUNTEERED: DON\'T KNOW',
+            9: 'Missing'
         }
     },
     {
@@ -936,7 +949,7 @@ export const questionnaire = [
             8: -2,
             9: -3
         }
-    }, 
+    },
     {
         id: 46,
         variable: 'IMD3013_1',
@@ -949,32 +962,6 @@ export const questionnaire = [
             7: -1,
             8: -2,
             9: -3
-        }
-    },
-    {
-        id: 46,
-        variable: 'IMD3013_2',
-        question: 'STATE OF ECONOMY - BETTER',
-        category: 'Multiple choices',
-        Options: {
-            2: 'Somewhat better',
-            1: 'Much better',
-            7: 'Refused',
-            8: 'Don"t know',
-            9: 'Missing'
-        }
-    },
-    {
-        id: 46,
-        variable: 'IMD3013_3',
-        question: 'STATE OF ECONOMY-Worse',
-        category: 'Multiple choices',
-        Options: {
-            2: 'Somewhat worse',
-            1: 'Much worse',
-            7: 'Refused',
-            8: 'Don"t know',
-            9: 'Missing'
         }
     },
     {
@@ -992,5 +979,18 @@ export const questionnaire = [
             8: -3,
             9: -4
         }
-    }
+    },
+    {
+        id: 46,
+        variable: 'IMD3013_2',
+        question: 'STATE OF ECONOMY - BETTER',
+        category: 'Multiple choices',
+        Options: {
+            2: 'Somewhat better',
+            1: 'Much better',
+            7: 'Refused',
+            8: 'Don"t know',
+            9: 'Missing'
+        }
+    },
 ];

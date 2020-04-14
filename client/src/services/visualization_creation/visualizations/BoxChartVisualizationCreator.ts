@@ -37,7 +37,7 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
         // const dimDeselected = Object.assign({}, dim);
         // const groupeDeselected = Object.assign([], group);
 
-        const width = 45;
+        const width = 55;
         const height = 75;
         const margins = { left: 20, right: 0, top: 0, bottom: 5 };
 
