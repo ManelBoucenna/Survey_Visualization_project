@@ -1,2 +1,2 @@
-# Surviz:Novice-friendly visualization platform for survey data
+# Surviz:Novice-friendly survey visualization tool
 Master project todo
