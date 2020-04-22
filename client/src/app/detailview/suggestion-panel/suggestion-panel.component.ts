@@ -11,7 +11,7 @@ import { Guid } from 'guid-typescript';
 // Data files
 import { Task, ValidationStatus } from 'src/helpers/enums';
 import { CreationEntry, CardEntry, Id } from 'src/helpers/types';
- 
+
 // Services
 import { DrawChartService } from 'src/services/draw-chart.service';
 import { SuggestChartService } from 'src/services/suggest-chart.service';
@@ -29,11 +29,10 @@ import { DataProvider } from 'src/services/Data_provider.service';
 export class SuggestionPanelComponent implements OnInit {
 
   // Variables to save user choice
-  selectedTask: Task;
+  selectedTask: Task = null;
   filteredQuestions: Observable<string[]>;
   selectedQuestions: string[] = [];
   IdQuestions: string[];
-
   // Variables to create the form
   questionnaire: any = [];
   metadata: any = [];
@@ -82,7 +81,6 @@ export class SuggestionPanelComponent implements OnInit {
         map((question: string | null) => question ? this._filter(question) : Questions.slice()));
   }
   add(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
@@ -117,13 +115,11 @@ export class SuggestionPanelComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.IdQuestions.filter(question => question.toLowerCase().indexOf(filterValue) === 0);
   }
-
   // Steps before output visualization;
   // 1- Get the name of the suggested visualization
   // 2- Create container of visualization
   // 3- Create the schema of the visualization
   AddNode(questions: string[], task: Task): void {
-
     const validationResults = new VisualisationSuggestionValidator(questions, task['key']).Validate();
     if (validationResults.every(result => result.Result === ValidationStatus.Passed)) {
       const id = Id.New('CardEntry');
@@ -153,6 +149,7 @@ export class SuggestionPanelComponent implements OnInit {
         });
       }
       );
+      this.selectedQuestions = [];
     } else {
       let validationErrors = 'Validation failed:\n';
       validationResults.filter(r => r.Result === ValidationStatus.Failed)

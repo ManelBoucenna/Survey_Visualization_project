@@ -6,7 +6,7 @@
  .node {
     padding: 4px; 
     /* box-shadow: 0 10px 40px 0 #B0C1D9; */
-     text-align: center; 
+     /* text-align: center;  */
  }
 
 .var_name {
@@ -24,14 +24,21 @@
     width: 24px;
     height: 24px;
 } 
+.delete-btn{
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+li.list-var.ng-star-inserted{
+  text-transform: lowercase;
+}
 .example-container {
-    background-color: rgb(235, 223, 223);
+    background-color: #3a74b73b;
     padding: 5px;
     min-width: 200px;
     min-height: 100px;
     margin: 7px;
-    border-radius: 2px;
+    border-radius: 8px;
     display: inline-block;
   vertical-align: top;
 }

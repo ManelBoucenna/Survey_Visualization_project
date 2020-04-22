@@ -29,6 +29,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
 import {MatListModule} from '@angular/material/list'; 
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import { NotficationService } from 'src/services/notification-service';
 import { DataProvider } from './../services/Data_provider.service';
 
@@ -64,6 +65,7 @@ import { DataProvider } from './../services/Data_provider.service';
     MatRadioModule,
     MatCheckboxModule,
     MatListModule,
+    MatSlideToggleModule,
 
     MatMenuModule,
 

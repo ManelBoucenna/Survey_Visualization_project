@@ -2,7 +2,8 @@
   <div *ngFor="let group of cardsCreationService.container; index as i;" class="example-container">
     <div  cdkDropList class="example-list" [cdkDropListData]=group (cdkDropListDropped)="drop($event)">
       <mat-card *ngFor="let viz of group" class="node example-box" cdkDragBoundary=".DragDrop" cdkDrag (cdkDragStarted)="drag($event)">
-        <span>Variables: <span *ngFor="let vari of viz.CreationEntries.Questions" >{{vari.question+" -"}}</span></span>
+        <h4>Variables:</h4>
+        <ul> <li class="list-var" *ngFor="let vari of viz.CreationEntries.Questions" >{{vari.question}}</li></ul>
         <div class="container">
           <div class="box-viz">
             <div width="max-content" id={{viz.Id.Value}} class="figure"></div>
@@ -11,7 +12,7 @@
         <!-- <button mat-icon-button>
           <mat-icon>zoom_in</mat-icon>
         </button> -->
-        <button mat-button color="warn" (click)=DeleteCard(viz)>Delete</button>
+        <button class="delete-btn" mat-button color="warn" (click)=DeleteCard(viz)>Delete</button>
         <div class="drag-handle" cdkDragHandle>
           <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
             <path

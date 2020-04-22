@@ -1,17 +1,19 @@
 <div class="search-form">
-  <button mat-flat-button [matMenuTriggerFor]="menu" style="width:38%; color:white;background-color:#1f77b4;margin:2px">Filter
+  <button mat-flat-button [matMenuTriggerFor]="menu" style="width:48%; color:white;background-color:#1f77b4;margin:2px">Filter
     variables</button>
-  <button mat-flat-button style="width:38%; color:white;background-color:#1f77b4;margin:2px" (click)="ResetFilters()">Reset filters</button>
-  <button mat-flat-button style="width:20%; color:white;background-color:#1f77b4;margin:2px" (click)="OpenData()">Info</button>
+  <button mat-flat-button style="width:48%; color:white;background-color:#1f77b4;margin:2px" (click)="ResetFilters()">Reset all</button>
+  <!-- <button mat-flat-button style="width:20%; color:white;background-color:#1f77b4;margin:2px" (click)="OpenData()">Info</button> -->
   <mat-menu #menu="matMenu">
     <mat-selection-list>
-      <mat-checkbox [(ngModel)]="master_checked" (keyup)="UpdateQuestions()" [(indeterminate)]="master_indeterminate"
-        (change)="master_change()" (click)="$event.stopPropagation();" color="primary">All</mat-checkbox><br>
-      <mat-checkbox *ngFor="let item of sortBy('name')" (keyup)="UpdateQuestions()" (change)="list_change()"
+      <mat-slide-toggle [(ngModel)]="master_checked" (keyup)="UpdateQuestions()" [(checked)]="master_indeterminate"
+        (change)="master_change()" (click)="$event.stopPropagation();" color="primary">Show/Hide all variables</mat-slide-toggle>
+      <div  *ngFor="let item of sortBy('name')">
+        <mat-checkbox (keyup)="UpdateQuestions()" (change)="list_change()"
         [(ngModel)]="item.checked" [disabled]="item.disabled" [labelPosition]="item.labelPosition"
         (click)="$event.stopPropagation();" color="primary">
         {{item.name}}
-      </mat-checkbox><br>
+      </mat-checkbox>
+    </div>
     </mat-selection-list>
   </mat-menu>
 </div>

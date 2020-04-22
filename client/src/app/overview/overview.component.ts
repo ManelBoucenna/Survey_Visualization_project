@@ -24,6 +24,7 @@ export class OverviewComponent implements OnInit {
   master_checked: boolean = true;
   master_indeterminate: boolean = false;
 
+
   constructor(
     public drawChartService: DrawChartService,
     dataProvider: DataProvider,
@@ -111,6 +112,11 @@ export class OverviewComponent implements OnInit {
   }
   public ResetFilters() {
     this.drawChartService.RedrawVisualizations();
+    this.filteredQuestions_list.forEach(value => {
+      value.checked = true;
+    });
+    this.master_checked = true;
+    this.master_indeterminate = false;
   }
 
   sortBy(prop: string) {

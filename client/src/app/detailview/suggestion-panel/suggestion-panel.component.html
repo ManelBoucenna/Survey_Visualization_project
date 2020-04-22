@@ -1,18 +1,10 @@
     <form class="form-inline">
       <p>I want to visualize the </p>
       <!-- <mat-form-field> -->
-        <mat-radio-group id="group-task" aria-label="Select a task" [(ngModel)]="selectedTask" name="tasks">
-          <mat-radio-button *ngFor="let task of tasks| keyvalue" [value]="task" color="primary">
-            {{task.value}}</mat-radio-button><br>
-        </mat-radio-group>
-        
-        <!-- <mat-label>Task</mat-label>
-        <mat-select [(ngModel)]="selectedTask" name="tasks">
-          <mat-option *ngFor="let task of tasks| keyvalue" [value]="task">
-            {{task.value}}
-          </mat-option>
-        </mat-select> -->
-      <!-- </mat-form-field> -->
+      <mat-radio-group id="group-task" aria-label="Select a task" [(ngModel)]="selectedTask" name="tasks">
+        <mat-radio-button *ngFor="let task of tasks| keyvalue" [value]="task" color="primary">
+          {{task.value}}</mat-radio-button><br>
+      </mat-radio-group>
       <p> of </p>
       <mat-form-field class="example-chip-list">
         <mat-chip-list #chipList aria-label="Question selection">
@@ -21,14 +13,41 @@
             {{question}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="Variables ..." #questionInput [formControl]="IdCtrl" [matAutocomplete]="auto"
-            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
-            (keyup.enter)="AddNode(selectedQuestions, selectedTask)">
+
+          <ng-container *ngIf="selectedTask == null ;else distribution">
+            <input placeholder="Please, select a task and a variable..." #questionInput [formControl]="IdCtrl"
+              [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+              (keyup.enter)="AddNode(selectedQuestions, selectedTask)">
+          </ng-container>
+          <ng-template #distribution>
+            <ng-container *ngIf="selectedTask['key'] == tasks.Distribution ;else relationship">
+              <input placeholder="Select one variable at the time." #questionInput [formControl]="IdCtrl"
+                [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" (keyup.enter)="AddNode(selectedQuestions, selectedTask)">
+            </ng-container>
+          </ng-template>
+          <ng-template #relationship>
+            <ng-container *ngIf="selectedTask['key'] == tasks.Relationship;else timeEvolution"> <input
+                placeholder="Select at least two variables." #questionInput [formControl]="IdCtrl"
+                [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" (keyup.enter)="AddNode(selectedQuestions, selectedTask)">
+            </ng-container>
+          </ng-template>
+          <ng-template #timeEvolution>
+            <ng-container *ngIf="selectedTask['key'] == tasks.TimeEvolution"> <input
+                placeholder="Select one variable at the time." #questionInput [formControl]="IdCtrl"
+                [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" (keyup.enter)="AddNode(selectedQuestions, selectedTask)">
+            </ng-container>
+          </ng-template>
         </mat-chip-list>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
           <mat-option *ngFor="let question of filteredQuestions | async" [value]="question">
-            {{question}}
+          {{question}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>

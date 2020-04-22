@@ -34,9 +34,6 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
             () => []
         );
 
-        // const dimDeselected = Object.assign({}, dim);
-        // const groupeDeselected = Object.assign([], group);
-
         const width = 55;
         const height = 75;
         const margins = { left: 20, right: 0, top: 0, bottom: 5 };
@@ -49,17 +46,7 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
             .group(group)
             .showOutliers(false);
 
-        // graphDeselected
-        //     .width(width)
-        //     .height(height)
-        //     .margins(margins)
-        //     .dimension(dimDeselected)
-        //     .group(groupeDeselected)
-        //     .showOutliers(false)
-        //     .colors('#ccc');
-
         graph.yAxis().ticks(2);
-        // graphDeselected.yAxis().ticks(2);
 
         graph.on('pretransition', (chart) => {
             graph.selectAll('rect.box')
@@ -67,7 +54,7 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
                 .text((d) => {
                     return 'Mean: ' + d3.mean(d.value).toFixed(2) + '\n'
                         + 'Median: ' + d3.median(d.value).toFixed(2) + '\n'
-                        + 'Variance: ' + d3.variance(d.value).toFixed(2) + '\n';
+                       // + 'Variance: ' + d3.variance(d.value).toFixed(2) + '\n';
                 });
         });
 
@@ -77,17 +64,6 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
                 .attr('text-anchor', 'middle')
                 .attr('transform', () => 'translate(-15,-12) rotate(-90)');
         });
-
-        // graphDeselected.on('renderlet', (chart) => {
-        //     graphDeselected.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
-        //     graphDeselected.selectAll('text')
-        //         .attr('text-anchor', 'middle')
-        //         .attr('transform', () => 'translate(-15,-12) rotate(-90)');
-        // });
-
-
-
-        // graphDeselected.render();
         graph.render();
         return {
             'graph':graph,

@@ -130,15 +130,7 @@ export class BalloonChart {
                 .tickFormat('')
             )
 
-        // Define the div for the tooltip
-        var div = d3.select('body').append('div')
-            .style('opacity', 0)
-            .style('padding', '2px')
-            .style('position', 'absolute')
-            .style('text-align', 'center')
-            .style('background', 'lightsteelblue')
-            .style('border-radius', '3px')
-            .style('pointer-events', 'none')
+
 
 
 
@@ -171,18 +163,25 @@ export class BalloonChart {
             .attr('height', d => 30 * (d.value - min) / (max - min))
             .style('fill', '#1f77b4')
             .on('mouseover', function (d, i) {
-                div.transition()
-                    .duration(50)
-                    .style('opacity', 1);
-                div.html(d.key[0] + '/' + d.key[1] + ':' + d.value)
+                // Define the div for the tooltip
+                var div = d3.select('body')
+                    .append('div')
+                    .attr('class', 'my_tooltip')
+                    .style('padding', '5px')
+                    .style('position', 'absolute')
+                    .style('color', '#fff')
+                    .style('text-align', 'center')
+                    .style('background', 'black')
+                    .style('border-radius', '6px')
+                    .style('pointer-events', 'none')
+                div.html(
+                    d.key[0] + '&' + d.key[1] +' = '+ d.value)
                     .style('left', (d3.event.pageX) + 'px')
                     .style('top', (d3.event.pageY) + 'px');
             })
             .on('mouseout', function (d, i) {
-                div.transition()
-                    .duration('50')
-                    .style('opacity', 0);
-            })
+                d3.select(".my_tooltip").remove();
+            });
 
         function make_x_gridlines() {
             return d3.axisBottom(x)

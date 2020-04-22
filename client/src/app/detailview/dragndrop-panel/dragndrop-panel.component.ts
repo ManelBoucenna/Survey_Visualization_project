@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, HostListener } from '@angular/core';
-import { CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { CdkDragDrop, CdkDragStart } from '@angular/cdk/drag-drop';
 
 // Services
 import { CardsCreationService } from 'src/services/cards-creation.service';

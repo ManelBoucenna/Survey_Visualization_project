@@ -13,4 +13,5 @@ app-dragndrop-panel {
     /* background-color: hotpink; */
     /* flex: 1 1 auto; */
     flex: 1;
+    overflow-y: scroll;
 }

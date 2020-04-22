@@ -1,3 +1,8 @@
+#metaview-panel{
+    position: fixed;
+    bottom: 2px;
+}
+
 #metadata-container{
     
     border-style: solid;

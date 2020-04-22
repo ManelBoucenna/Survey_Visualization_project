@@ -47,7 +47,6 @@ export class CardsCreationService {
   }
  
   public moveCard(event: CdkDragDrop<any[]>) {
-    console.log(event.container)
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

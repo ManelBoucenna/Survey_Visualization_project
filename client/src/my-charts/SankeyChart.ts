@@ -101,14 +101,13 @@ export class Sankey {
         ];
 
         const layout = {
-            //width: 500,
-            height: 400,
+            width: Sankey.Variables.length * 150,
+            height: 300,
             margin: {
                 l: 50,
                 r: 50,
-                b: 100,
-                t: 100,
-                pad: 4
+                b: 25,
+                t: 25
             }
         };
 

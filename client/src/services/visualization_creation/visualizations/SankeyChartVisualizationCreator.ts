@@ -12,27 +12,11 @@ export class SankeyChartVisualizationCreator extends VisualizationDrawer {
 
     // Define the hierarchical categories of the sankey
     const dims = [];
-    // const dims_draw = [];
-    // const groups = [];
-    // const groups_draw = [];
-    // const steps = [];
     const variables = [];
 
     Entry.Questions.forEach(element => {
       const dim = Entry.ndx.dimension(d => d[element.variable]);
-      // const dim_draw = Entry.ndx.dimension(d => d[element.variable]);
-
-      // const group = dim.group().reduceCount();
-      // const group_draw = dim_draw.group().reduceCount();
-
       dims.push({label: element.variable, dimension: dim});
-      // dims_draw.push(dim_draw)
-
-      // groups.push(group);
-      // groups_draw.push(group_draw);
-
-
-      // steps.push({ name: element.variable, label: element.variable });
       variables.push(element.variable);
     });
     const sankeyDim = Entry.ndx.dimension(d => d);
