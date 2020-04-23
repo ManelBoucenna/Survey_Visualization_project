@@ -6,5 +6,5 @@ export class Config {
     /**
      * The base API URL.
      */
-    public static apiUrl = 'http://localhost:3000/api';
+    public static apiUrl = 'https://cryptic-castle-64048.herokuapp.com/api';
   }
