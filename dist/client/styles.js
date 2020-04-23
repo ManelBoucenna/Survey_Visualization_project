@@ -414,9 +414,9 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/manal/Desktop/Survey Visualization/client/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css */"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css");
-__webpack_require__(/*! /home/manal/Desktop/Survey Visualization/client/src/styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! /home/manal/Desktop/Survey Visualization/client/node_modules/dc/dist/style/dc.css */"./node_modules/dc/dist/style/dc.css");
+__webpack_require__(/*! /home/manal/Desktop/Survey Visualization/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css */"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css");
+__webpack_require__(/*! /home/manal/Desktop/Survey Visualization/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /home/manal/Desktop/Survey Visualization/node_modules/dc/dist/style/dc.css */"./node_modules/dc/dist/style/dc.css");
 
 
 /***/ })

@@ -3399,7 +3399,7 @@ class Config {
 /**
  * The base API URL.
  */
-Config.apiUrl = 'http://localhost:3000/api';
+Config.apiUrl = 'https://cryptic-castle-64048.herokuapp.com/api';
 
 
 /***/ }),
@@ -5081,7 +5081,7 @@ class VisualizationSuggestorFactory {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/manal/Desktop/Survey Visualization/client/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/manal/Desktop/Survey Visualization/src/main.ts */"./src/main.ts");
 
 
 /***/ })
