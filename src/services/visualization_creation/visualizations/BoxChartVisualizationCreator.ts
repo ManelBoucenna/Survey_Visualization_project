@@ -36,7 +36,7 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
 
         const width = 55;
         const height = 75;
-        const margins = { left: 20, right: 0, top: 0, bottom: 5 };
+        const margins = { left: 20, right: 0, top: 0, bottom: 3 };
 
         graph
             .width(width)
@@ -48,6 +48,8 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
 
         graph.yAxis().ticks(2);
 
+        graph.renderHorizontalGridLines(true);
+
         graph.on('pretransition', (chart) => {
             graph.selectAll('rect.box')
                 .append('title')
@@ -57,12 +59,14 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
                        // + 'Variance: ' + d3.variance(d.value).toFixed(2) + '\n';
                 });
         });
-
+ 
         graph.on('renderlet', (chart) => {
             graph.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
             graph.selectAll('text')
                 .attr('text-anchor', 'middle')
                 .attr('transform', () => 'translate(-15,-12) rotate(-90)');
+            graph.selectAll('g.axis.x')
+                .attr('display', 'none')
         });
         graph.render();
         return {

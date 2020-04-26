@@ -14,7 +14,7 @@
 
 .box-viz {
     margin: 5px 0px 0px 5px;
-    padding: 5px;
+    padding: 0px 5px;
     display: flex;
     flex-direction: column;
     min-width: 90px;
@@ -27,6 +27,10 @@
     margin: 0;
     font-size: 10px;
     text-transform: lowercase;
+    max-width: 88px;
+    text-overflow:  ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /* Interaction */
@@ -36,4 +40,9 @@
     -moz-box-shadow: 8px 1px 31px 1px rgba(65, 93, 163, 0.6);
     box-shadow: 3px 1px 3px 1px rgba(65, 93, 163, 0.6) !important;
     transition: all linear 250ms;
+}
+
+.Rating{
+    margin-top: -7px;
+    margin-bottom: -10px;
 }

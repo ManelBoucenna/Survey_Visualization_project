@@ -21,8 +21,8 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
     const middle = (max / 2).toFixed(0);
 
     const staticGroup = super.StaticCopyGroup(group);
-    const margin = { left: 5, right: 5, top: 5, bottom: 5 };
-    const size = [90, 50, margin];
+    const margin = { left: 5, right: 5, top: 2, bottom: 5 };
+    const size = [90, 55, margin];
 
 
     graph.compose([
@@ -57,7 +57,13 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
     graph.renderHorizontalGridLines(true);
 
     graph.xAxis().tickValues([]);
-    graph.yAxis().tickValues([middle]);
+    graph.yAxis().tickValues([middle, max]);
+
+    graph.on('renderlet', (chart) => {
+      graph.selectAll('g.axis.y')
+          .attr('display', 'none')
+  });
+
     graph.render();
 
     return {

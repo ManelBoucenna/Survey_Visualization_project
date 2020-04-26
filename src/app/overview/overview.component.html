@@ -20,7 +20,7 @@
 
 <div class="container">
   <div *ngFor="let question of questionnaire" [ngStyle]="{'display': (!IsChecked(question.question)) ? 'none':'flex'}" class="box-viz" id="{{'container_'+question.variable}}">
-      <p class="var_name" matTooltip={{question.question}}>{{question.variable}}</p>
-      <div width="max-content" id="{{'overview_' + question.variable}}" class="figure"></div>
+      <p class="var_name" matTooltip={{question.question}}>{{question.question}}</p>
+      <div width="max-content" id="{{'overview_' + question.variable}}" class={{question.category}}></div>
   </div>
 </div>
