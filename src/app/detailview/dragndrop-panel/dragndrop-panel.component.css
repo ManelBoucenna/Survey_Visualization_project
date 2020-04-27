@@ -25,8 +25,13 @@
     height: 24px;
 } 
 .delete-btn{
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  right: 35px;
+}
+
+.delete-btn mat-icon{
+  color: red;
 }
 
 li.list-var.ng-star-inserted{
@@ -73,4 +78,21 @@ li.list-var.ng-star-inserted{
   
   .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .iconic{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 8px;
+    padding-left: 8px;
+    background-color: #e0e0e0;
+    margin: 7px;
+    border-radius: 6px;
+    align-items: center;
+    cursor: default;
+    font-weight: 450;
+  }
+
+  .description{
+    max-width: 93%;
   }

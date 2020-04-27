@@ -175,7 +175,9 @@ export class BalloonChart {
                     .style('border-radius', '6px')
                     .style('pointer-events', 'none')
                 div.html(
-                    d.key[0] + '&' + d.key[1] +' = '+ d.value)
+                    '<div>' + d.key[0] + '</div>' +
+                    '<div>' + d.key[1] + '</div>' +
+                    '<div> Total:' + d.value + '</div>')
                     .style('left', (d3.event.pageX) + 'px')
                     .style('top', (d3.event.pageY) + 'px');
             })

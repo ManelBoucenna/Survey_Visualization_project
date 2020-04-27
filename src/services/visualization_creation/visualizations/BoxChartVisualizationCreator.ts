@@ -35,8 +35,9 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
         );
 
         const width = 55;
-        const height = 75;
-        const margins = { left: 20, right: 0, top: 0, bottom: 3 };
+        const height = 0.75*document.getElementById(Entry.id.Value).getBoundingClientRect().width;
+
+        const margins = { left: 20, right: 0, top: 5, bottom: 3 };
 
         graph
             .width(width)
@@ -50,15 +51,6 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
 
         graph.renderHorizontalGridLines(true);
 
-        graph.on('pretransition', (chart) => {
-            graph.selectAll('rect.box')
-                .append('title')
-                .text((d) => {
-                    return 'Mean: ' + d3.mean(d.value).toFixed(2) + '\n'
-                        + 'Median: ' + d3.median(d.value).toFixed(2) + '\n'
-                       // + 'Variance: ' + d3.variance(d.value).toFixed(2) + '\n';
-                });
-        });
  
         graph.on('renderlet', (chart) => {
             graph.select('svg').attr('transform', 'rotate(90) translate(0,-15)');
@@ -67,6 +59,17 @@ export class BoxChartVisualizationCreator extends VisualizationDrawer {
                 .attr('transform', () => 'translate(-15,-12) rotate(-90)');
             graph.selectAll('g.axis.x')
                 .attr('display', 'none')
+            graph.selectAll('g.axis.y path.domain')
+                .attr('display', 'none')
+            graph.selectAll('rect.box')
+            .append('title')
+            .text((d) => {
+                return 'Mean: ' + d3.mean(d.value).toFixed(2) + '\n'
+                    + 'Median: ' + d3.median(d.value).toFixed(2) + '\n'
+                    + 'Min: ' + d3.min(d.value) + '\n'
+                    + 'Max: ' + d3.max(d.value) + '\n'
+                    // + 'Variance: ' + d3.variance(d.value).toFixed(2) + '\n';
+            });
         });
         graph.render();
         return {

@@ -9,3 +9,6 @@ body {
     right:0;
 }
 body { margin: 0; font-family: "Roboto","Helvetica Neue",sans-serif; }
+:host ::ng-deep .mat-chip.mat-standard-chip {
+    border-radius: 5px;
+  }

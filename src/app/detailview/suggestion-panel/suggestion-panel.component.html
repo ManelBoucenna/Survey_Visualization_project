@@ -1,5 +1,5 @@
     <form class="form-inline">
-      <p>I want to visualize the </p>
+      <p>I want to visualize the</p>
       <!-- <mat-form-field> -->
       <mat-radio-group id="group-task" aria-label="Select a task" [(ngModel)]="selectedTask" name="tasks">
         <mat-radio-button *ngFor="let task of tasks| keyvalue" [value]="task" color="primary">
@@ -52,5 +52,5 @@
         </mat-autocomplete>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit"
-        (click)="AddNode(selectedQuestions, selectedTask)">Apply</button>
+        (click)="AddNode(selectedQuestions, selectedTask)">Visualize !</button>
     </form>

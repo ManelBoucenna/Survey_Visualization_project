@@ -9,6 +9,7 @@ export class CountriesChartVisualizationCreator extends VisualizationDrawer {
     console.log('Country diagram');
     const Entry = this.Entries;
     const id = Entry.id.Value;
+    const width = document.getElementById(id).getBoundingClientRect().width;
     const variable = Entry.Questions[0].variable;
     const graph = dc.compositeChart('#' + id);
 
@@ -18,8 +19,8 @@ export class CountriesChartVisualizationCreator extends VisualizationDrawer {
     const max = dim.top(Infinity).length;
     const group = dim.group().reduceCount();
     const staticGroup = super.StaticCopyGroup(group);
-    const margin = { left: 40, right: 50, top: 10, bottom: 30 };
-    const size = [1000, 90, margin];
+    const margin = { left: 5, right: 5, top: 10, bottom: 30 };
+    const size = [width , 90, margin];
 
     graph.compose([
       dc.barChart(graph)
@@ -54,11 +55,13 @@ export class CountriesChartVisualizationCreator extends VisualizationDrawer {
       graph.selectAll('g.x g.tick text')
         .attr('transform', 'translate(-10,0) rotate(40)')
         .style('text-anchor', 'start');
+      graph.selectAll('g.axis.y')
+          .attr('display', 'none')
     });
 
     // graph.xAxis().tickValues([]);
-    graph.y(d3.scaleLinear().domain([0, max * 3 / 4]));
-    graph.yAxis().tickValues([(max / 2).toFixed(0)]);
+    graph.y(d3.scaleLinear().domain([0, max]));
+    graph.yAxis().tickValues([(max / 2).toFixed(0), max]);
 
     graph.render();
     return {

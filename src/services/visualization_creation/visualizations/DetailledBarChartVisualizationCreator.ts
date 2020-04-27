@@ -21,8 +21,13 @@ export class DetailledBarChartVisualizationCreator extends VisualizationDrawer {
     const numGROUPS = group.all().length;
     const staticGroup = super.StaticCopyGroup(group);
     const margin = { left: 45, right: 5, top: 5, bottom: 45 };
-    const size = [numGROUPS * 60, 200, margin];
-
+    let width = 0;
+    if (numGROUPS < 4) {
+      width = 200;
+    } else {
+      width = numGROUPS * 60;
+    }
+    const size = [width, 200, margin];
     const notificationService = this.notificationService_;
     graph.compose([
       dc.barChart(graph)

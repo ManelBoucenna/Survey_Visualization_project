@@ -4,6 +4,7 @@ import { CdkDragDrop, CdkDragStart } from '@angular/cdk/drag-drop';
 // Services
 import { CardsCreationService } from 'src/services/cards-creation.service';
 import { CardEntry } from 'src/helpers/types';
+import { Task } from 'src/helpers/enums';
 
 @Component({
   selector: 'app-dragndrop-panel',
@@ -13,6 +14,7 @@ import { CardEntry } from 'src/helpers/types';
 
 export class DragndropPanelComponent implements OnInit {
 
+  tasks: any = Task;
   @ViewChild('cardContainer', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
   constructor(public cardsCreationService: CardsCreationService) { }
 

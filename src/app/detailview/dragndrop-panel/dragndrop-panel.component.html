@@ -1,18 +1,32 @@
 <div cdkDropListGroup class="DragDropContainer">
   <div *ngFor="let group of cardsCreationService.container; index as i;" class="example-container">
-    <div  cdkDropList class="example-list" [cdkDropListData]=group (cdkDropListDropped)="drop($event)">
-      <mat-card *ngFor="let viz of group" class="node example-box" cdkDragBoundary=".DragDrop" cdkDrag (cdkDragStarted)="drag($event)">
-        <h4>Variables:</h4>
-        <ul> <li class="list-var" *ngFor="let vari of viz.CreationEntries.Questions" >{{vari.question}}</li></ul>
+    <div cdkDropList class="example-list" [cdkDropListData]=group (cdkDropListDropped)="drop($event)">
+      <mat-card *ngFor="let viz of group" class="node example-box" cdkDragBoundary=".DragDrop" cdkDrag
+        (cdkDragStarted)="drag($event)">
+        <div class="description">
+          <ng-container *ngIf="viz.Task ==tasks.Distribution ;else relationship">
+            <p>Distribution of <span class='iconic'>{{viz.CreationEntries.Questions[0].question}}</span>.</p>
+          </ng-container>
+          <ng-template #relationship>
+            <ng-container *ngIf="viz.Task == tasks.Relationship ;else timeEvolution">
+              <p> Relationship between <span class='iconic'
+                  *ngFor="let vari of viz.CreationEntries.Questions">{{vari.question}}</span>
+            </ng-container>
+          </ng-template>
+          <ng-template #timeEvolution>
+            <ng-container *ngIf="viz.Task == tasks.TimeEvolution">
+              <p>Time evolution of <span class='iconic'>{{viz.CreationEntries.Questions[0].question}}</span>.</p>
+            </ng-container>
+          </ng-template>
+        </div>
         <div class="container">
           <div class="box-viz">
             <div width="max-content" id={{viz.Id.Value}} class="figure"></div>
-          </div> 
+          </div>
         </div>
-        <!-- <button mat-icon-button>
-          <mat-icon>zoom_in</mat-icon>
-        </button> -->
-        <button class="delete-btn" mat-button color="warn" (click)=DeleteCard(viz)>Delete</button>
+        <button mat-icon-button class="delete-btn" (click)=DeleteCard(viz)>
+          <mat-icon>delete</mat-icon>
+        </button>
         <div class="drag-handle" cdkDragHandle>
           <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
             <path

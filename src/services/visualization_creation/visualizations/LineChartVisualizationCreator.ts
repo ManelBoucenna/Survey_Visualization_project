@@ -12,7 +12,8 @@ export class LineChartVisualizationCreator extends VisualizationDrawer {
         const id = '#' + Entry.id.Value;
         const graph = dc.lineChart(id);
         let filter = [];
-        // const graph1 = new dc.CompositeChart(id);
+        const width = document.getElementById(Entry.id.Value).getBoundingClientRect().width;
+        const height = 95;
 
         // If we have one variable only we draw line chart by Count
         if ((Entry.Questions).length === 1) {
@@ -21,9 +22,8 @@ export class LineChartVisualizationCreator extends VisualizationDrawer {
 
             const group = dim.group().reduceCount();
             const staticGroup = super.StaticCopyGroup(group);
-            const width = 1000;
-            const height = 90;
-            const margins = { left: 40, right: 50, top: 10, bottom: 30 };
+
+            const margins = { left: 5, right: 5, top: 10, bottom: 30 };
 
             graph
                 .width(width)
@@ -59,6 +59,8 @@ export class LineChartVisualizationCreator extends VisualizationDrawer {
                         } else { dimFilter.filterAll(); }
                         dc.redrawAll();
                     });
+                    graph.selectAll('g.axis.y')
+                        .attr('display', 'none');
                 });
             graph.yAxis().ticks(3).tickFormat(d => String(d));
             graph.xAxis().tickFormat(d => String(d));

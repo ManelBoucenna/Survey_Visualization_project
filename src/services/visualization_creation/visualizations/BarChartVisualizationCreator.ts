@@ -11,6 +11,7 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
 
     const Entry = this.Entries;
     const id = Entry.id;
+    const width = document.getElementById(Entry.id.Value).getBoundingClientRect().width;
     const graph = dc.compositeChart('#' + id.Value);
     // Crossfilter dimension and group setups
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
@@ -22,7 +23,7 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
 
     const staticGroup = super.StaticCopyGroup(group);
     const margin = { left: 5, right: 5, top: 2, bottom: 5 };
-    const size = [90, 55, margin];
+    const size = [width, 55, margin];
 
 
     graph.compose([
