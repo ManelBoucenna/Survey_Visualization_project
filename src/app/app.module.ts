@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 //Components
-import { AppComponent } from './app.component';
+import { AppComponent, DialogOverviewExampleDialog } from './app.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MetaviewComponent } from './metaview/metaview.component';
 import { DetailviewComponent } from './detailview/detailview.component';
@@ -36,6 +36,7 @@ import { DataProvider } from './../services/Data_provider.service';
 @NgModule({
   declarations: [
     AppComponent,
+    DialogOverviewExampleDialog,
     OverviewComponent,
     MetaviewComponent,
     DetailviewComponent,
@@ -78,7 +79,7 @@ import { DataProvider } from './../services/Data_provider.service';
     { provide: APP_INITIALIZER, useFactory: DataProviderFactory, deps: [DataProvider], multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CardVizComponent]
+  entryComponents: [CardVizComponent, DialogOverviewExampleDialog]
 })
 export class AppModule { }
 

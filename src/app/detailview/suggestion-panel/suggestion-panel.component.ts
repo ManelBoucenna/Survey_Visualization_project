@@ -2,7 +2,7 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, EventEmitter, OnInit, ViewChild, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatAutocompleteSelectedEvent, MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -52,6 +52,7 @@ export class SuggestionPanelComponent implements OnInit {
   Data: any;
   @ViewChild('questionInput', { static: false }) questionInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild(MatAutocompleteTrigger, { static: false }) autoTrigger: MatAutocompleteTrigger;
 
   constructor(
     private drawChartService: DrawChartService,
@@ -63,6 +64,7 @@ export class SuggestionPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("Tasks :", this.tasks)
     this.questionnaire = this.Data.questionnaire;
     this.metadata = this.Data.metadata;
     this.questions = this.questions.concat(this.questionnaire, this.metadata);
@@ -109,6 +111,10 @@ export class SuggestionPanelComponent implements OnInit {
     this.selectedQuestions.push(event.option.viewValue);
     this.questionInput.nativeElement.value = '';
     this.IdCtrl.setValue(null);
+    const self = this;
+    setTimeout(function () {
+        self.autoTrigger.openPanel();
+    }, 0);
   }
 
   private _filter(value: string): string[] {

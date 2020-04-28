@@ -45,7 +45,7 @@
             </ng-container>
           </ng-template>
         </mat-chip-list>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let question of filteredQuestions | async" [value]="question">
           {{question}}
           </mat-option>
