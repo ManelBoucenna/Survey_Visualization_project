@@ -111,10 +111,12 @@ export class SuggestionPanelComponent implements OnInit {
     this.selectedQuestions.push(event.option.viewValue);
     this.questionInput.nativeElement.value = '';
     this.IdCtrl.setValue(null);
-    const self = this;
-    setTimeout(function () {
+    if (this.selectedTask['key'] === Task.Relationship) {
+      const self = this;
+      setTimeout(function () {
         self.autoTrigger.openPanel();
-    }, 0);
+      }, 0);
+    }
   }
 
   private _filter(value: string): string[] {
