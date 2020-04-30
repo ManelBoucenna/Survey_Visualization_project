@@ -44,7 +44,7 @@ export class ViolinBoxChartVisualizationCreator extends VisualizationDrawer {
       .dimension(dimX)
       .group(groupY)
       .tickFormat(d3.format('.1f'))
-      .renderDataPoints(true)
+      .renderDataPoints(false)
       .renderTitle(true)
       .dataOpacity(1)
       .dataWidthPortion(2)

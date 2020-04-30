@@ -35,12 +35,15 @@ export class ViolinChartVisualizationCreator extends VisualizationDrawer {
 
       var data = [{
         type: 'violin',
+        hoveron: "violins",
         x: unpack(rows, categorical_var),
         y: unpack(rows, numerical_var),
         points: 'none',
+        opacity: 0.6,
         box: {
-          visible: false
+          visible: true
         },
+        boxpoints: false,
         line: {
           color: 'Jet',
         },
@@ -55,7 +58,7 @@ export class ViolinChartVisualizationCreator extends VisualizationDrawer {
         margin: {
           l: 10,
           r: 10,
-          b: 30,
+          b: 40,
           t: 5,
           pad: 0
         },

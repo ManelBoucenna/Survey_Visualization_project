@@ -106,6 +106,7 @@ export class BalloonChart {
             .attr('transform', 'translate(-10, 0) rotate(45)')
             .attr('text-anchor', 'start');
         d3.selectAll('.axis text').style('font-size', '8px');
+
         //GRIDS
         g.append('g')
             .attr('class', 'grid')

@@ -33,7 +33,7 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
         const rangex = [dimX.bottom(1)[0][xEntry.variable] - 10, dimX.top(1)[0][xEntry.variable] + 10];
         const rangey = [dimY.bottom(1)[0][yEntry.variable] - 10, dimY.top(1)[0][yEntry.variable] + 10];
 
-        const width = 400;
+        const width = document.getElementById(this.Entries.id.Value).getBoundingClientRect().width;
         const height = 400;
         const margins = { left: 50, right: 50, top: 50, bottom: 50 };
 
@@ -55,8 +55,9 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
                 return p.key[1];
             })
             .radiusValueAccessor(function (p) {
-                return p.value / 100;
+                return p.value;
             })
+            .minRadius(0.5)
             // .x(d3.scaleBand())
             .x(d3.scaleLinear().domain(rangex))
             .y(d3.scaleLinear().domain(rangey))
@@ -67,8 +68,9 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
             .renderVerticalGridLines(true)
             .renderLabel(false)
             .renderTitle(true)
+            .xAxisLabel(xEntry.question)
+            .yAxisLabel(yEntry.question)
             .title(function (p) {
-                console.log('hOVER BUBBEL');
                 return xEntry.question + ': ' + p.key[0] + '\n'
                     + yEntry.question + ': ' + p.key[1] + '\n'
                     + 'Count: ' + p.value;
