@@ -93,6 +93,12 @@ li.list-var.ng-star-inserted{
     font-weight: 450;
   }
 
+  .add-btn{
+      position: absolute;
+      top: 90px;
+      right: 5px;
+    }
+
   .description{
     max-width: 93%;
   }

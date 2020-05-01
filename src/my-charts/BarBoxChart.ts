@@ -78,7 +78,7 @@ export class BarBoxChart {
 
         const layout = {
             showlegend: false,
-            //width: 300,
+            //width: BarBoxChart._group.length *100,
             height: 250,
             margin: {
                 l: 35,

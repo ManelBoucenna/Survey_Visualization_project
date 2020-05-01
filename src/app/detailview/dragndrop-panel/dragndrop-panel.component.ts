@@ -29,6 +29,10 @@ export class DragndropPanelComponent implements OnInit {
   }
 
   drag(event: CdkDragStart<any>) {
+    //this.cardsCreationService.createGroup();
+  }
+
+  AddEmptyCard() {
     this.cardsCreationService.createGroup();
   }
 }

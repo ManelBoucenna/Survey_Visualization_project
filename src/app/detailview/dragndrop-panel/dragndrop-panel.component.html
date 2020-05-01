@@ -1,4 +1,8 @@
 <div cdkDropListGroup class="DragDropContainer">
+  <button *ngIf= "cardsCreationService.container.length>0" mat-icon-button class="add-btn" (click)=AddEmptyCard() matTooltip= "Add empty group">
+    <mat-icon>add</mat-icon>
+  </button>
+
   <div *ngFor="let group of cardsCreationService.container; index as i;" class="example-container">
     <div cdkDropList class="example-list" [cdkDropListData]=group (cdkDropListDropped)="drop($event)">
       <mat-card *ngFor="let viz of group" class="node example-box" cdkDragBoundary=".DragDrop" cdkDrag
@@ -27,7 +31,7 @@
         <button mat-icon-button class="delete-btn" (click)=DeleteCard(viz)>
           <mat-icon>delete</mat-icon>
         </button>
-        <div class="drag-handle" cdkDragHandle>
+        <div class="drag-handle" cdkDragHandle (click)=AddEmptyCard()>
           <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
