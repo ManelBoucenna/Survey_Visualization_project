@@ -3,8 +3,8 @@ import { BarBoxChart } from 'src/my-charts/BarBoxChart';
 
 // Visualization libraries
 
-declare var Plotly: any;
-
+import * as d3 from 'd3';
+import * as dc from 'dc';
 export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
 
   public Draw(): any {
@@ -13,14 +13,16 @@ export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
 
     // Crossfilter dimension and group setup
     const variable = Entry.Questions[0].variable;
-    const dim = Entry.ndx.dimension(d => d[variable]);
+    const dimBar = Entry.ndx.dimension(d => d[variable]);
+    const dimBox = Entry.ndx.dimension(d => '');
     const group = Entry.ndx.dimension(d => d[variable]).group();
 
     // DOM objects for rendering
     const figure: any = document.getElementById(id);
     const graph = new BarBoxChart(Entry.group);
-    graph.Dimension(dim)
+    graph.Dimension(dimBar)//, dimBox)
       .Group(group)
+      //.Id(id)
       .Variable(variable)
       .Graph(figure);
 

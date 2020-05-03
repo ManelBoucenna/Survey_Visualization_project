@@ -58,8 +58,7 @@ export class DetailledBarChartVisualizationCreator extends VisualizationDrawer {
       .xAxisLabel('');
 
     // graph.xAxis().tickValues([]);
-    graph.y(d3.scaleLinear().domain([0, max]))
-    graph.yAxis().tickValues([(max / 2).toFixed(0)]);
+    graph.yAxis().ticks(3);
 
     graph.on("renderlet", function (chart) {
       // rotate x-axis labels

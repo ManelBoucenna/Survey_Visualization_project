@@ -81,6 +81,6 @@ export class BubbleChartVisualizationCreator extends VisualizationDrawer {
 
 
         graph.render();
-        return true;
+        return graph;
     }
 }

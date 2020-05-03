@@ -49,8 +49,8 @@ export class ParallelCoordinates {
                 showscale: true,
                 reversescale: true,
                 colorscale: 'Jet',
-                cmin: -4000,
-                cmax: -100
+                // cmin: -4000,
+                // cmax: -100
             },
 
             dimensions: this.getCategories(ParallelCoordinates._Data)
@@ -74,16 +74,43 @@ export class ParallelCoordinates {
     getCategories(arr) {
         const dimensions = [];
         var variable = ParallelCoordinates._variables;
+        console.log(variable)
         variable.forEach(element => {
-            const object = {
-                label: element,
-                values: arr.map(el => el[element])
-            };
+            const object = this.magicalMapper(arr, element);
             dimensions.push(object);
         });
         return dimensions;
     }
 
+    magicalMapper(arr, element) {
+        if (typeof (arr.map(el => el[element])[0]) === 'number') {
+            console.log(element + " is a numerical")
+            return {
+                label: element,
+                values: arr.map(el => el[element]),
+                ticktext: arr.map(el => el[element])
+            };
+        } else {
+            console.log(element + " is a categocial")
+            let array = arr.map(el => el[element])
+            const Ticktext = [...new Set(array)];
+            const numbers = Array.from(Array(Ticktext.length).keys());
+            const dictionnary = new Map();
+            Ticktext.forEach((elem, index) => {
+                dictionnary.set(elem, numbers[index]);
+            });
+
+            console.log(Ticktext)
+            console.log(numbers)
+            console.log(dictionnary)
+            return {
+                label: element,
+                values: arr.map(el => dictionnary.get(el[element])),
+                tickvals: numbers,
+                ticktext: Ticktext
+            };
+        }
+    }
     public update_dimensions(e) {
         /* Handle the output of filtering inside a group in card
         e = [{
@@ -103,7 +130,6 @@ export class ParallelCoordinates {
         [0]
         ] */
 
-        console.log(e)
         if (Object.keys(e[0])[0] === "dimensions") {
             e[0]['dimensions'].forEach((element, index) => {
                 var temp = element['values']
@@ -121,23 +147,14 @@ export class ParallelCoordinates {
                 const ranges = Object.values(filter)[0][0];
                 ParallelCoordinates.filters[index] = ranges;
                 ParallelCoordinates._dimensions[index].filterRange(ranges);
-                // ParallelCoordinates._dimension[index].filterFunction(elem => {
-                //     let filter = null;
-                //     ranges.map(range => {
-                //         console.log(range)
-                //         if (filter == null) { filter = (elem > range[0] && elem < range[1]) }
-                //         else { filter = filter || (elem > range[0] && elem < range[1]) }
-                //     });
-                //     return filter;
-                // });
-        } else {
-            ParallelCoordinates.filters[index] = null;
-            ParallelCoordinates._dimensions[index].filterAll();
+            } else {
+                ParallelCoordinates.filters[index] = null;
+                ParallelCoordinates._dimensions[index].filterAll();
+            }
+            ParallelCoordinates.notificationService_.emit(ParallelCoordinates._GroupId);
+            return this;
         }
-        ParallelCoordinates.notificationService_.emit(ParallelCoordinates._GroupId);
-        return this;
-    }
 
-}
+    }
 
 }
