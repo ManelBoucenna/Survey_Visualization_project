@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CdkDragDrop, CdkDragStart } from '@angular/cdk/drag-drop';
 
 // Services
 import { CardsCreationService } from 'src/services/cards-creation.service';
 import { CardEntry } from 'src/helpers/types';
-import { Task } from 'src/helpers/enums';
+import { Task, Visualization, Information } from 'src/helpers/enums';
 
 @Component({
   selector: 'app-dragndrop-panel',
@@ -35,6 +35,12 @@ export class DragndropPanelComponent implements OnInit {
   AddEmptyCard() {
     this.cardsCreationService.createGroup();
   }
+
+  ReadChart(viz: Visualization) {
+    console.log(Information)
+    console.log(viz)
+    alert(Information[viz])
+  }
 }
- 
+
 

@@ -28,8 +28,11 @@
             <div width="max-content" id={{viz.Id.Value}} class="figure"></div>
           </div>
         </div>
-        <button mat-icon-button class="delete-btn" (click)=DeleteCard(viz)>
+        <button mat-icon-button class="delete-btn" (click)=DeleteCard(viz) matTooltip= "Delete chart">
           <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button class="info-btn" (click)=ReadChart(viz.Visualization) matTooltip= "How to read the chart?">
+          <mat-icon>info</mat-icon>
         </button>
         <div class="drag-handle" cdkDragHandle (click)=AddEmptyCard()>
           <svg width="24px" fill="currentColor" viewBox="0 0 24 24">

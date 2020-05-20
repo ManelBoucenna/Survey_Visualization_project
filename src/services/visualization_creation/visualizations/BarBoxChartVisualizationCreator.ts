@@ -20,9 +20,9 @@ export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
     // DOM objects for rendering
     const figure: any = document.getElementById(id);
     const graph = new BarBoxChart(Entry.group);
-    graph.Dimension(dimBar)//, dimBox)
+    graph.Dimension(dimBar, dimBox)
       .Group(group)
-      //.Id(id)
+      .Id(id)
       .Variable(variable)
       .Graph(figure);
 
@@ -33,3 +33,8 @@ export class BarBoxChartVisualizationCreator extends VisualizationDrawer {
   }
 
 }
+
+
+
+
+

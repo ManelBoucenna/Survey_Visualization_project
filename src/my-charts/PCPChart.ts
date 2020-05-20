@@ -49,8 +49,8 @@ export class ParallelCoordinates {
                 showscale: true,
                 reversescale: true,
                 colorscale: 'Jet',
-                // cmin: -4000,
-                // cmax: -100
+                cmin: -4000,
+                cmax: -100
             },
 
             dimensions: this.getCategories(ParallelCoordinates._Data)
