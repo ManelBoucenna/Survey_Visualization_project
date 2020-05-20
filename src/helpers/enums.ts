@@ -23,7 +23,8 @@ export enum Visualization {
 export enum Category {
     MultipleChoices = 'Multiple choices',
     RatingScale = 'Rating scale',
-    Numerical = 'Numerical'
+    Numerical = 'Numerical',
+    Country = 'Country'
 }
 
 export enum ValidationStatus {

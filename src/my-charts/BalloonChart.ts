@@ -167,7 +167,7 @@ export class BalloonChart {
                 // Define the div for the tooltip
                 var div = d3.select('body')
                     .append('div')
-                    .attr('class', 'my_tooltip')
+                    .attr('class', 'my_tooltipi')
                     .style('padding', '5px')
                     .style('position', 'absolute')
                     .style('color', '#fff')
@@ -183,7 +183,7 @@ export class BalloonChart {
                     .style('top', (d3.event.pageY) + 'px');
             })
             .on('mouseout', function (d, i) {
-                d3.select(".my_tooltip").remove();
+                d3.selectAll(".my_tooltipi").remove();
             });
 
         function make_x_gridlines() {

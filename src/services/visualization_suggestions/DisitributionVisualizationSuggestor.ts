@@ -17,11 +17,14 @@ export class DistributionVisualizationSuggestor extends VisualizationSuggestor {
             case Category.MultipleChoices: {
                 return Visualization.DetailledBarChart;
             }
+            case Category.Country: {
+                return Visualization.DetailledBarChart;
+            }
             case Category.RatingScale: {
                 return Visualization.BarBoxChart;
             }
             case Category.Numerical: {
-                return Visualization.ViolinChart;
+                return Visualization.DetailledBarChart;
             }
             default: {
                 alert('There is an error in question category: ' + category);

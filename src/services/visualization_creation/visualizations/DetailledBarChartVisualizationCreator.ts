@@ -49,7 +49,7 @@ export class DetailledBarChartVisualizationCreator extends VisualizationDrawer {
       .margins(size[2])
       .dimension(dim)
       .group(group)
-      .ordering((d) => -d.value)
+      // .ordering((d) => -d.value)
       .x(d3.scaleBand())
       .xUnits(dc.units.ordinal)
       .y(d3.scaleLinear().domain([0, 100]))
