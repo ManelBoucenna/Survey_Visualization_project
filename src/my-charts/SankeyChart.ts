@@ -16,8 +16,8 @@ export class Sankey {
     static getColor(array, filters) {
         let value = null;
         const colorscale = {
-            0: 'lightsteelblue',
-            1: 'mediumseagreen'
+            0: '#ccc',
+            1: '#1f77b4'
         };
 
         const newColor = array.map(item => {
@@ -141,7 +141,9 @@ export class Sankey {
         const value = filter[1];
         const MyIndex = Sankey.Variables[index];
         let myDim = Sankey.Dimensions.find(item => item.label === MyIndex).dimension;
-
+        // console.log("Selected Dimensions:", myDim.group().reduceCount().all())
+        // console.log(MyIndex)
+        // console.log(Sankey.filters)
         if (Object.keys(Sankey.filters).includes(MyIndex)) {
             if (Sankey.filters[MyIndex].includes(value)) {
                 Sankey.filters[MyIndex].pop(value);
@@ -159,6 +161,7 @@ export class Sankey {
             myDim.filter(value);
         }
 
+        console.log(myDim.group().reduceCount().all())
         Sankey.NotificationService.emit(Sankey.GroupId);
         Sankey.getColor(Sankey.Data, Sankey.filters);
         return this;

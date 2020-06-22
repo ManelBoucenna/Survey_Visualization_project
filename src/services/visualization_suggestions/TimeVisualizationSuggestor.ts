@@ -24,6 +24,9 @@ export class TimeVisualizationSuggestor extends VisualizationSuggestor {
                 return Visualization.ViolinBoxChart;
                 // return Visualization.BoxChart;
             }
+            case Category.Country: {
+                return Visualization.StackedChart;
+            }
             default: {
                 alert('There is an error in question category: ' + category);
                 break;

@@ -134,7 +134,7 @@ export class ParallelCoordinates {
             e[0]['dimensions'].forEach((element, index) => {
                 var temp = element['values']
                 const ranges = [Math.min(...temp), Math.max(...temp)];
-                console.log("Range :", ranges);
+                // console.log("Range :", ranges);
                 ParallelCoordinates.filters[index] = ranges;
                 ParallelCoordinates._dimensions[index].filterRange(ranges);
             });

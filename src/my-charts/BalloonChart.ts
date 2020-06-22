@@ -185,6 +185,10 @@ export class BalloonChart {
             .on('mouseout', function (d, i) {
                 d3.selectAll(".my_tooltipi").remove();
             });
+        // d3.selectAll().style('max-width', '88px')
+        //               .style('text-overflow', 'ellipsis')
+        //               .style('white-space', 'nowrap')
+        //               .style('overflow', 'hidden')
 
         function make_x_gridlines() {
             return d3.axisBottom(x)

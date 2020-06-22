@@ -15,11 +15,15 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
     const graph = dc.compositeChart('#' + id.Value);
     // Crossfilter dimension and group setups
     const dim = Entry.ndx.dimension(d => d[Entry.Questions[0].variable]);
-    const dimReset =  Entry.ndx.dimension(d => '');
+    const dimReset = Entry.ndx.dimension(d => '');
     const group = dim.group().reduceCount();
-
-    const max = dim.top(Infinity).length;
-    const middle = (max / 2).toFixed(0);
+    let maxi = 0;
+    group.all().forEach(element => {
+      if (element.value > maxi) {
+        maxi = element.value;
+      }
+    });
+    const middle = (maxi / 2).toFixed(0);
 
     const staticGroup = super.StaticCopyGroup(group);
     const margin = { left: 5, right: 5, top: 2, bottom: 5 };
@@ -54,16 +58,16 @@ export class BarChartVisualizationCreator extends VisualizationDrawer {
       .brushOn(true);
 
 
-    graph.y(d3.scaleLinear().domain([0, max]));
+    graph.y(d3.scaleLinear().domain([0, maxi]));
     graph.renderHorizontalGridLines(true);
 
     graph.xAxis().tickValues([]);
-    graph.yAxis().tickValues([middle, max]);
+    graph.yAxis().tickValues([middle, maxi]);
 
     graph.on('renderlet', (chart) => {
       graph.selectAll('g.axis.y')
-          .attr('display', 'none')
-  });
+        .attr('display', 'none')
+    });
 
     graph.render();
 

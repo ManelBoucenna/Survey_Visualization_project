@@ -51,7 +51,7 @@ export class ViolinBoxChartVisualizationCreator extends VisualizationDrawer {
       .elasticY(false)
       .elasticX(false)
       ;
-    figure.ordinalColors(['#A07A19', '#AC30C0', '#EB9A72', '#BA86F5', '#EA22A8']);
+    figure.ordinalColors(['#1f77b4']);
     figure.colorAccessor((data) => data.key);
     figure.render();
 
@@ -61,6 +61,17 @@ export class ViolinBoxChartVisualizationCreator extends VisualizationDrawer {
         dimX.filter(d => d === e.key);
         notificationService.emit(Entry.group);
       });
+
+      figure.selectAll('rect.box')
+          .append('title')
+          .text((d) => {
+              return 'Mean: ' + d3.mean(d.value).toFixed(2) + '\n'
+                  + 'Median: ' + d3.median(d.value).toFixed(2) + '\n'
+                  + 'Min: ' + d3.min(d.value) + '\n'
+                  + 'Max: ' + d3.max(d.value) + '\n'
+          });
+      figure.select('text')
+          .attr('color', 'white')
     });
     return figure;
   }
