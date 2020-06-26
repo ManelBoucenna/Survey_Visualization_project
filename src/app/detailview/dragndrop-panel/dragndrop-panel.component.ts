@@ -36,10 +36,14 @@ export class DragndropPanelComponent implements OnInit {
     this.cardsCreationService.createGroup();
   }
 
-  ReadChart(viz: Visualization) {
-    console.log(Information)
-    console.log(viz)
-    alert(Information[viz])
+  ReadChart(viz: Visualization, block: any) {
+    const decoder = block.CreationEntries.Questions[0].description;
+    if (decoder){
+      alert(Information[viz]+ decoder)
+    }
+    else{
+      alert(Information[viz])
+    }    
   }
 }
 

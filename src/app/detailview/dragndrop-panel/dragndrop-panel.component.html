@@ -31,7 +31,7 @@
         <button mat-icon-button class="delete-btn" (click)=DeleteCard(viz) matTooltip= "Delete chart">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button class="info-btn" (click)=ReadChart(viz.Visualization) matTooltip= "How to read the chart?">
+        <button mat-icon-button class="info-btn" (click)="ReadChart(viz.Visualization,viz)" matTooltip= "How to read the chart?">
           <mat-icon>info</mat-icon>
         </button>
         <div class="drag-handle" cdkDragHandle (click)=AddEmptyCard()>

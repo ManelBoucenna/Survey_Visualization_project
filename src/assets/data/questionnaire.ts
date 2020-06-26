@@ -203,7 +203,8 @@ export const questionnaire = [
             9999998: 'VOLUNTEERED: DON\'T KNOW',
             9999999: 'MISSING'
         }
-    }, {
+    },
+  /*   {
         id: 38,
         variable: 'IMD3005_1',
         question: 'PARTY IDENTIFICATION: ARE YOU CLOSE TO ANY POLITICAL PARTY',
@@ -215,7 +216,7 @@ export const questionnaire = [
             8: 'DON\'T KNOW',
             9: 'MISSING'
         }
-    },
+    },*/
     {
         id: 39,
         variable: 'IMD3005_2',
@@ -248,13 +249,20 @@ export const questionnaire = [
         question: 'PARTY IDENTIFICATION: HOW CLOSE',
         category: 'Rating scale',
         Options: {
-            1: '3',
-            2: '2',
-            3: '1',
-            7: 'VOLUNTEERED: REFUSED',
-            8: 'VOLUNTEERED: DON\'T KNOW',
-            9: 'Missing'
-        }
+            1: 1,
+            2: 2,
+            3: 3,
+            7: -1,
+            8: -2,
+            9: -3
+        },
+        description:
+            '\nCode: \n3 -> VERY CLOSE\n' +
+            '2 -> SOMEWHAT CLOSE\n' +
+            '1-> NOT VERY CLOSE\n' +
+            '-1 -> VOLUNTEERED: REFUSED\n' +
+            '-2 -> VOLUNTEERED: DON T KNOW\n' +
+            '-3 -> MISSING',
     },
     {
         id: 40,
@@ -277,7 +285,14 @@ export const questionnaire = [
             97: -1,
             98: -2,
             99: -3
-        }
+        },
+        description:
+            '\nCode: \n1 -> LEFT\n' +
+            '11 -> RIGHT\n' +
+            '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+            '-1 -> VOLUNTEERED: REFUSED\n' +
+            '-2 -> VOLUNTEERED: DON T KNOW\n' +
+            '-3 -> MISSING',
     },
     {
         id: 41,
@@ -301,7 +316,15 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },
+        description:
+            '\nCode: \n1 -> LEFT\n' +
+            '11 -> RIGHT\n' +
+            '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+            '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+            '-2 -> VOLUNTEERED: REFUSED\n' +
+            '-3 -> VOLUNTEERED: DON T KNOW\n' +
+            '-4 -> MISSING',
     }, {
         id: 41,
         variable: 'IMD3007_B',
@@ -324,7 +347,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -348,7 +378,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -372,7 +409,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -396,7 +440,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -420,7 +471,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -444,7 +502,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -468,7 +533,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 41,
@@ -492,7 +564,14 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> LEFT\n' +
+        '11 -> RIGHT\n' +
+        '0-> VOLUNTEERED: HAVENT HEARD OF LEFT-RIGHT\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 42,
@@ -515,7 +594,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 42,
@@ -538,7 +623,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 42,
@@ -561,7 +652,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     }, {
         id: 42,
         variable: 'IMD3008_D',
@@ -583,7 +680,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     }, {
         id: 42,
         variable: 'IMD3008_E',
@@ -605,7 +708,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     }, {
         id: 42,
         variable: 'IMD3008_F',
@@ -627,7 +736,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     }, {
         id: 42,
         variable: 'IMD3008_G',
@@ -649,7 +764,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     }, {
         id: 42,
         variable: 'IMD3008_H',
@@ -671,7 +792,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     }, {
         id: 42,
         variable: 'IMD3008_I',
@@ -693,7 +820,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF PARTY\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -716,7 +849,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -739,7 +878,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -762,7 +907,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -785,7 +936,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -808,7 +965,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -831,7 +994,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -854,7 +1023,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -877,7 +1052,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 43,
@@ -900,7 +1081,13 @@ export const questionnaire = [
             97: -2,
             98: -3,
             99: -4
-        }
+        },description:
+        '\nCode: \n1 -> STRONGLY DISLIKE\n' +
+        '11 ->STRONGLY LIKE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-2 -> VOLUNTEERED: REFUSED\n' +
+        '-3 -> VOLUNTEERED: DON T KNOW\n' +
+        '-4 -> MISSING',
     },
     {
         id: 44,
@@ -916,7 +1103,13 @@ export const questionnaire = [
             7: -1,
             8: -2,
             9: -3
-        }
+        },description:
+        '\nCode: \n1 -> NOT AT ALL SATISFIED\n' +
+        '5 ->VERY SATISFIEDE\n' +
+        '-1 -> VOLUNTEERED: HAVENT HEARD OF LEADER\n' +
+        '-1 -> VOLUNTEERED: REFUSED\n' +
+        '-2 -> VOLUNTEERED: DON T KNOW\n' +
+        '-3 -> MISSING',
     },
     {
         id: 45,
@@ -932,7 +1125,12 @@ export const questionnaire = [
             7: -1,
             8: -2,
             9: -3
-        }
+        },description:
+        '\nCode: \n1 -> IT DOESNT MAKE ANY DIFFERENCE WHO IS IN POWER\n' +
+        '5 ->IT MAKES A BIG DIFFERENCE WHO IS IN POWER\n' +
+        '-1 -> VOLUNTEERED: REFUSED\n' +
+        '-2 -> VOLUNTEERED: DON T KNOW\n' +
+        '-3 -> MISSING',
     },
     {
         id: 46,
@@ -962,7 +1160,12 @@ export const questionnaire = [
             7: -1,
             8: -2,
             9: -3
-        }
+        },description:
+        '\nCode: \n1 ->  WHO PEOPLE VOTE FOR WONT MAKE ANY DIFFERENCE\n' +
+        '5 -> WHO PEOPLE VOTE FOR CAN MAKE A BIG DIFFERENCE \n' +
+        '-1 -> VOLUNTEERED: REFUSED\n' +
+        '-2 -> VOLUNTEERED: DON T KNOW\n' +
+        '-3 -> MISSING',
     },
     {
         id: 46,

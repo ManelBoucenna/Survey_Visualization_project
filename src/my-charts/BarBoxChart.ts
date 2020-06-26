@@ -346,10 +346,14 @@ export class BarBoxChart {
             BarBoxChart.BoxChart.selectAll('rect.box')
                 .append('title')
                 .text((d) => {
-                    return 'Mean: ' + d3.mean(d.value).toFixed(2) + '\n'
-                        + 'Median: ' + d3.median(d.value).toFixed(2) + '\n'
-                        + 'Min: ' + d3.min(d.value) + '\n'
-                        + 'Max: ' + d3.max(d.value) + '\n'
+                    let mean = d3.mean(d.value).toFixed(2);
+                    let median = d3.median(d.value).toFixed(2);
+                    let min = d3.min(d.value);
+                    let max = d3.max(d.value);
+                    return 'Mean: ' + mean + '\n'
+                        + 'Median: ' + median + '\n'
+                        + 'Min: ' + min + '\n'
+                        + 'Max: ' + max + '\n'
                 });
             BarBoxChart.BoxChart.select('text')
                 .attr('color', 'white')
