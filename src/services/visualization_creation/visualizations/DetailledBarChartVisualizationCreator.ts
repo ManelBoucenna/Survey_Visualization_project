@@ -52,7 +52,7 @@ export class DetailledBarChartVisualizationCreator extends VisualizationDrawer {
       // .ordering((d) => -d.value)
       .x(d3.scaleBand())
       .xUnits(dc.units.ordinal)
-      .y(d3.scaleLinear().domain([0, 100]))
+      .y(d3.scaleLinear().domain([0, 150]))
       .brushOn(false)
       .renderHorizontalGridLines(true)
       .xAxisLabel('');
