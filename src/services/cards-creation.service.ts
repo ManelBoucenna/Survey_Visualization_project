@@ -57,6 +57,7 @@ export class CardsCreationService {
   }
 
   public removeCard(cardEntry: CardEntry) {
+    this.removeEmptyGroups()
     this.container.forEach((g, index) => {
       // if element is single card
       if (g.length === 1) {
