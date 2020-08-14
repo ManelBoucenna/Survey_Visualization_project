@@ -1,4 +1,6 @@
-# Client
+# Survize
+
+Survize is a visualisation tool that allows you to explore survey data. Survize is intended especially for novice users with basic knowledge in data visualization. This visualization was done in part of my research project during my master's degree at Polytechnique Montreal. The code is written in TypeScript and uses D3.js (dc.js and Plotly.js) for the rendering. Survize is available [here](https://manelboucenna.github.io/Survey_Visualization_project/).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
 
